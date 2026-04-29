@@ -1,0 +1,112 @@
+[
+  {
+    "Employee ID": "fffe32003000360033003200",
+    "Date of Joining": "9/30/2008",
+    "Gender": "Female",
+    "Company Type": "Service",
+    "WFH Setup Available": "No",
+    "Designation": 2,
+    "Resource Allocation": 3,
+    "Mental Fatigue Score": 3.8,
+    "Burn Rate": 0.16
+  },
+  {
+    "Employee ID": "fffe3700360033003500",
+    "Date of Joining": "11/30/2008",
+    "Gender": "Male",
+    "Company Type": "Service",
+    "WFH Setup Available": "Yes",
+    "Designation": 1,
+    "Resource Allocation": 2,
+    "Mental Fatigue Score": 5.0,
+    "Burn Rate": 0.36
+  },
+  {
+    "Employee ID": "fffe31003300320037003900",
+    "Date of Joining": "3/10/2008",
+    "Gender": "Female",
+    "Company Type": "Product",
+    "WFH Setup Available": "Yes",
+    "Designation": 2,
+    "Resource Allocation": null,
+    "Mental Fatigue Score": 5.8,
+    "Burn Rate": 0.49
+  },
+  {
+    "Employee ID": "fffe32003400380032003900",
+    "Date of Joining": "11/3/2008",
+    "Gender": "Male",
+    "Company Type": "Service",
+    "WFH Setup Available": "Yes",
+    "Designation": 1,
+    "Resource Allocation": 1,
+    "Mental Fatigue Score": 2.6,
+    "Burn Rate": 0.2
+  },
+  {
+    "Employee ID": "fffe31003900340031003600",
+    "Date of Joining": "7/24/2008",
+    "Gender": "Female",
+    "Company Type": "Service",
+    "WFH Setup Available": "No",
+    "Designation": 3,
+    "Resource Allocation": 7,
+    "Mental Fatigue Score": 6.9,
+    "Burn Rate": 0.52
+  },
+  {
+    "Employee ID": "fffe3300350037003500",
+    "Date of Joining": "11/26/2008",
+    "Gender": "Male",
+    "Company Type": "Product",
+    "WFH Setup Available": "Yes",
+    "Designation": 2,
+    "Resource Allocation": 4,
+    "Mental Fatigue Score": 3.6,
+    "Burn Rate": 0.29
+  },
+  {
+    "Employee ID": "fffe33003300340039003100",
+    "Date of Joining": "1/2/2008",
+    "Gender": "Female",
+    "Company Type": "Service",
+    "WFH Setup Available": "No",
+    "Designation": 3,
+    "Resource Allocation": 6,
+    "Mental Fatigue Score": 7.9,
+    "Burn Rate": 0.62
+  },
+  {
+    "Employee ID": "fffe32003600320037003400",
+    "Date of Joining": "10/31/2008",
+    "Gender": "Female",
+    "Company Type": "Service",
+    "WFH Setup Available": "Yes",
+    "Designation": 2,
+    "Resource Allocation": 4,
+    "Mental Fatigue Score": 4.4,
+    "Burn Rate": 0.33
+  },
+  {
+    "Employee ID": "fffe32003200300034003700",
+    "Date of Joining": "12/27/2008",
+    "Gender": "Female",
+    "Company Type": "Service",
+    "WFH Setup Available": "No",
+    "Designation": 3,
+    "Resource Allocation": 6,
+    "Mental Fatigue Score": null,
+    "Burn Rate": 0.56
+  },
+  {
+    "Employee ID": "fffe31003600320030003200",
+    "Date of Joining": "3/9/2008",
+    "Gender": "Female",
+    "Company Type": "Product",
+    "WFH Setup Available": "No",
+    "Designation": 3,
+    "Resource Allocation": 6,
+    "Mental Fatigue Score": null,
+    "Burn Rate": 0.67
+  }
+]
