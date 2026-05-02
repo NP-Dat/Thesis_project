@@ -1,0 +1,204 @@
+Project BurnoutDetection {
+  database_type: 'MySQL & MongoDB'
+  Note: '''
+    Redesigned database schema for Industrial Employee Burnout Detection System.
+    MySQL  → structured relational data (users, HR profiles, results, alerts).
+    MongoDB → flexible document data (CBI quiz bank, per-submission responses).
+  '''
+}
+
+// ==========================================
+// MYSQL DATABASE (Structured / Relational)
+// ==========================================
+
+// ---------- Identity & Auth ----------
+
+Table users {
+  id int [pk, increment]
+  email varchar(255) [unique, not null]
+  password_hash varchar(255) [not null]
+  first_name varchar(100) [not null]
+  last_name varchar(100) [not null]
+  gender enum('Male','Female','Other') [not null]
+  date_of_birth date
+  role enum('employee','admin') [not null, default: 'employee']
+  is_active boolean [not null, default: true]
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+  updated_at timestamp [default: `CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP`]
+
+  Note: 'Authentication and demographics. Passwords are stored as bcrypt hashes.'
+}
+
+// ---------- Organisation ----------
+
+Table departments {
+  id int [pk, increment]
+  name varchar(100) [unique, not null, note: 'e.g. Assembly Line A, Maintenance, Quality Control']
+  location varchar(100) [note: 'Factory floor / building']
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+
+  Note: 'Normalised department list. Powers the Admin heatmap grouping.'
+}
+
+// ---------- Simulated HR Data ----------
+
+Table hr_profiles {
+  id int [pk, increment]
+  user_id int [unique, not null, ref: - users.id]
+  department_id int [not null, ref: > departments.id]
+  date_of_joining date [not null, note: 'Sourced from mock data "Date of Joining"']
+  company_type enum('Service','Product') [not null, note: 'From mock data']
+  wfh_available boolean [not null, default: false, note: 'From mock data "WFH Setup Available"']
+  designation int [not null, note: 'Seniority level 1-5 (matches mock data integer scale)']
+  resource_allocation int [note: 'Workload intensity 1-10 (nullable – mock data has nulls)']
+  shift_type enum('Day','Night','Rotating') [not null, default: 'Day']
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+  updated_at timestamp [default: `CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP`]
+
+  Note: '''
+    Simulated HR record, auto-generated when an employee registers.
+    Fields align 1-to-1 with the Kaggle-style mock data in employee-burnt-out.json.
+  '''
+}
+
+// ---------- Assessment / Prediction ----------
+
+Table assessment_results {
+  id int [pk, increment]
+  user_id int [not null, ref: > users.id]
+  personal_burnout_score float [note: 'Average of CBI personal-burnout section (0-100)']
+  work_burnout_score float [note: 'Average of CBI work-related section (0-100)']
+  mental_fatigue_score float [not null, note: 'Combined score mapped to 0.0-10.0 scale for the AI model']
+  predicted_burn_rate float [not null, note: 'Returned by Python AI service: 0.0-1.0']
+  risk_level enum('low','moderate','high','critical') [not null, note: 'Derived from burn_rate thresholds']
+  taken_at timestamp [default: `CURRENT_TIMESTAMP`]
+
+  indexes {
+    (user_id, taken_at) [name: 'idx_user_history']
+  }
+
+  Note: '''
+    One row per completed assessment.
+    risk_level mapping:
+      low      → burn_rate < 0.35
+      moderate → 0.35 ≤ burn_rate < 0.55
+      high     → 0.55 ≤ burn_rate < 0.80
+      critical → burn_rate ≥ 0.80
+  '''
+}
+
+// ---------- Alerts ----------
+
+Table alerts {
+  id int [pk, increment]
+  assessment_result_id int [not null, ref: > assessment_results.id]
+  user_id int [not null, ref: > users.id]
+  alert_type enum('high_risk','critical_risk','trend_spike') [not null]
+  message text [not null]
+  is_read boolean [not null, default: false]
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+
+  indexes {
+    (is_read, created_at) [name: 'idx_unread_alerts']
+  }
+
+  Note: '''
+    Auto-generated when an assessment crosses a risk threshold.
+    Displayed in the Admin/HR "High-Risk Alerts" table.
+    trend_spike fires when burn_rate jumps ≥ 0.15 between two consecutive assessments.
+  '''
+}
+
+// ---------- Help Resources ----------
+
+Table help_resources {
+  id int [pk, increment]
+  title varchar(200) [not null]
+  description text
+  url varchar(500)
+  min_risk_level enum('low','moderate','high','critical') [not null, note: 'Show this resource when employee risk ≥ this level']
+  is_active boolean [not null, default: true]
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+
+  Note: 'Curated mental-health resources surfaced to employees via the "Get Help" feature.'
+}
+
+
+// ==========================================
+// MONGODB COLLECTIONS (Document / Flexible)
+// ==========================================
+
+// ---------- CBI Quiz Bank ----------
+// Collection: cbi_questions
+// One document = one complete quiz definition (the CBI).
+// Storing as a single document keeps the quiz atomic and avoids
+// joins across a question + section + options triple.
+
+Table mdb_cbi_quiz {
+  _id objectId [pk]
+  name varchar [note: '"Copenhagen Burnout Inventory (excerpt)"']
+  version int [note: 'Allows quiz evolution without breaking old submissions']
+  response_options json [note: '[{label:"Always",value:100}, ... {label:"Never/almost never",value:0}]']
+  sections json [note: '[{id:"personal_burnout", title:"Personal burnout", questionIds:[1..6]}, ...]']
+  questions json [note: '[{id:1, section:"personal_burnout", text:"...", reverseScored:false}, ...]']
+  is_active boolean [default: true]
+
+  Note: '''
+    MongoDB Collection (singleton-ish document).
+    Mirrors the structure of cbi-test.json exactly.
+    The quiz can be versioned; old submissions reference the version they used.
+  '''
+}
+
+// ---------- Quiz Submissions ----------
+// Collection: quiz_submissions
+// One document = one complete assessment attempt (all 13 answers together).
+// This is the idiomatic MongoDB pattern vs. one-row-per-answer.
+
+Table mdb_quiz_submissions {
+  _id objectId [pk]
+  mysql_assessment_id int [note: 'Foreign key → MySQL assessment_results.id']
+  mysql_user_id int [note: 'Denormalised for fast per-user queries']
+  quiz_version int [note: 'References mdb_cbi_quiz.version']
+  responses json [note: '''
+    Array of 13 objects:
+    [
+      { questionId: 1, answerLabel: "Often", answerValue: 75 },
+      { questionId: 10, answerLabel: "Seldom", rawValue: 25, adjustedValue: 75, reverseScored: true },
+      ...
+    ]
+  ''']
+  personal_burnout_avg float [note: 'Pre-computed section average (0-100)']
+  work_burnout_avg float [note: 'Pre-computed section average (0-100)']
+  submitted_at timestamp
+
+  Note: '''
+    MongoDB Collection.
+    Stores every answer for a single assessment in one document.
+    The backend calculates section averages, maps to mental_fatigue_score (0-10),
+    then sends designation + resource_allocation + mental_fatigue_score to the Python AI.
+  '''
+}
+
+
+// ==========================================
+// RELATIONSHIP SUMMARY
+// ==========================================
+// users          1 ── 1  hr_profiles           (every employee has exactly one HR record)
+// users          1 ── *  assessment_results     (employee takes many assessments over time)
+// departments    1 ── *  hr_profiles            (many employees belong to one department)
+// assessment     1 ── 1  mdb_quiz_submissions   (each result links to its raw quiz answers in Mongo)
+// assessment     1 ── *  alerts                 (one result can trigger multiple alert types)
+
+// ==========================================
+// DATA FLOW (updated)
+// ==========================================
+// 1. Employee registers → row in `users` + simulated row in `hr_profiles` (seeded from mock ranges).
+// 2. Employee takes CBI quiz → questions pulled from `mdb_cbi_quiz`.
+// 3. Answers submitted → stored as a single document in `mdb_quiz_submissions`.
+// 4. Node.js computes section averages and mental_fatigue_score (0-10).
+// 5. Node.js sends { designation, resource_allocation, mental_fatigue_score } to Python AI.
+// 6. Python returns predicted_burn_rate → saved in `assessment_results` with risk_level.
+// 7. If risk_level is high/critical or trend spikes → auto-insert into `alerts`.
+// 8. Employee dashboard reads their own `assessment_results` history for trend charts.
+// 9. Admin dashboard aggregates `assessment_results` joined with `hr_profiles` + `departments` for heatmaps.
