@@ -14,7 +14,7 @@ export const mysqlPool = mysql.createPool({
   keepAliveInitialDelay: 10_000,
   dateStrings: false,
   timezone: 'Z',
-  ssl: env.MYSQL_SSL ? { rejectUnauthorized: true } : undefined,
+  ssl: env.MYSQL_SSL ? { rejectUnauthorized: false } : undefined,
 });
 
 export async function pingMysql() {
