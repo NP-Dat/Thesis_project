@@ -1,0 +1,5 @@
+ADMIN_EMAIL=admin@factory.com
+ADMIN_PASSWORD=ChangeMe!2026
+
+  "email": "worker1@factory.com",
+  "password": "Test1234!",
