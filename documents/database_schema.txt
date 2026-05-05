@@ -109,6 +109,32 @@ Table alerts {
   '''
 }
 
+// ---------- Employee KPIs ----------
+
+Table employee_kpis {
+  id int [pk, increment]
+  user_id int [not null, ref: > users.id]
+  period_date date [not null, note: 'First day of the month (e.g. 2026-01-01). UNIQUE with user_id.']
+  attendance_rate float [not null, note: 'Monthly attendance percentage 0–100']
+  productivity_score float [not null, note: 'Performance metric 0–100']
+  overtime_hours float [not null, note: 'Total overtime hours worked in the month']
+  tasks_completed int [not null, note: 'Number of tasks finished that month']
+  quality_score float [not null, note: 'Work quality metric 0–100']
+  days_absent int [not null, note: 'Number of days absent in the month']
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+
+  indexes {
+    (user_id, period_date) [unique, name: 'uq_kpi_user_period']
+    (period_date) [name: 'idx_kpi_period']
+  }
+
+  Note: '''
+    Monthly performance snapshot per employee.
+    One row per user per month. Used by admin dashboards to correlate
+    burnout risk with objective workplace performance metrics.
+  '''
+}
+
 // ---------- Help Resources ----------
 
 Table help_resources {
@@ -186,6 +212,7 @@ Table mdb_quiz_submissions {
 // ==========================================
 // users          1 ── 1  hr_profiles           (every employee has exactly one HR record)
 // users          1 ── *  assessment_results     (employee takes many assessments over time)
+// users          1 ── *  employee_kpis          (one KPI snapshot per employee per month)
 // departments    1 ── *  hr_profiles            (many employees belong to one department)
 // assessment     1 ── 1  mdb_quiz_submissions   (each result links to its raw quiz answers in Mongo)
 // assessment     1 ── *  alerts                 (one result can trigger multiple alert types)

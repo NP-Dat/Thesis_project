@@ -30,4 +30,28 @@ router.get(
   asyncHandler(dashboardCtrl.adminDepartment)
 );
 
+router.get(
+  '/admin/department/:departmentId/analytics',
+  authenticate,
+  requireRole('admin'),
+  validate(positiveIntParam('departmentId'), 'params'),
+  asyncHandler(dashboardCtrl.adminDepartmentAnalytics)
+);
+
+router.get(
+  '/admin/employees',
+  authenticate,
+  requireRole('admin'),
+  validate(paginationQuery, 'query'),
+  asyncHandler(dashboardCtrl.adminEmployees)
+);
+
+router.get(
+  '/admin/employees/:userId',
+  authenticate,
+  requireRole('admin'),
+  validate(positiveIntParam('userId'), 'params'),
+  asyncHandler(dashboardCtrl.adminEmployeeDetail)
+);
+
 export default router;

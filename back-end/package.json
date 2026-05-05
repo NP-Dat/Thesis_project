@@ -11,7 +11,9 @@
     "seed:quiz": "node scripts/seed.mjs --only=quiz",
     "seed:admin": "node scripts/seed.mjs --only=admin",
     "seed:resources": "node scripts/seed.mjs --only=resources",
-    "seed:dataset": "node scripts/seed-dataset.mjs"
+    "seed:dataset": "node scripts/seed-dataset.mjs",
+    "seed:assessments": "node scripts/seed-assessments.mjs",
+    "seed:kpis": "node scripts/seed-kpis.mjs"
   },
   "engines": {
     "node": ">=18.17"

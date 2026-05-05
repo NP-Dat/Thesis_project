@@ -156,6 +156,7 @@ export interface Alert {
   id: number;
   assessmentResultId?: number;
   alertType: AlertType;
+  userId: number;
   employeeName: string;
   department: string;
   message: string;
@@ -163,13 +164,41 @@ export interface Alert {
   createdAt: string;
 }
 
+export interface KpiPoint {
+  month: string;
+  attendanceRate: number;
+  productivityScore: number;
+  qualityScore: number;
+  overtimeHours: number;
+  tasksCompleted: number;
+  daysAbsent: number;
+  compositeKpi: number;
+}
+
+export interface KpiBurnRatePoint {
+  month: string;
+  compositeKpi: number | null;
+  avgBurnRate: number | null;
+}
+
+export interface DepartmentKpi {
+  departmentId: number;
+  name: string;
+  avgCompositeKpi: number;
+  avgAttendance: number;
+  avgProductivity: number;
+  avgQuality: number;
+}
+
 export interface AdminDashboard {
   companyOverview: CompanyOverview;
   departments: DepartmentSummary[];
+  departmentKpis: DepartmentKpi[];
   recentAlerts: Alert[];
 }
 
 export interface DepartmentEmployee {
+  userId: number;
   anonymousId: string;
   designation: number;
   shiftType: string;
@@ -183,6 +212,89 @@ export interface DepartmentDetail {
   department: { id: number; name: string; location: string };
   employees: DepartmentEmployee[];
   pagination: Pagination;
+}
+
+export interface EmployeeListItem {
+  userId: number;
+  anonymousId: string;
+  department: string;
+  designation: number;
+  shiftType: string;
+  latestBurnRate: number;
+  riskLevel: RiskLevel;
+  lastAssessmentDate: string;
+  assessmentCount: number;
+}
+
+export type EmployeeSortField =
+  | "burnRate"
+  | "lastAssessment"
+  | "assessmentCount"
+  | "department"
+  | "riskLevel";
+
+export interface EmployeeListResponse {
+  employees: EmployeeListItem[];
+  pagination: Pagination;
+}
+
+export interface EmployeeAdminDetail {
+  anonymousId: string;
+  department: string;
+  designation: number;
+  shiftType: string;
+  latestAssessment: LatestAssessment | null;
+  trendData: TrendPoint[];
+  totalAssessments: number;
+  kpiData: KpiPoint[];
+  kpiBurnRateComparison: KpiBurnRatePoint[];
+}
+
+export interface DepartmentAnalyticsEmployee {
+  anonymousId: string;
+  burnRate: number;
+  riskLevel: RiskLevel;
+  designation: number;
+  shiftType: string;
+}
+
+export interface DesignationBurnRate {
+  designation: number;
+  avgBurnRate: number;
+  count: number;
+}
+
+export interface ShiftBurnRate {
+  shift: string;
+  avgBurnRate: number;
+  count: number;
+}
+
+export interface MonthlyBurnRate {
+  month: string;
+  avgBurnRate: number;
+  assessmentCount: number;
+}
+
+export interface DepartmentAnalyticsSummary {
+  avgBurnRate: number;
+  medianBurnRate: number;
+  totalEmployees: number;
+  highRiskCount: number;
+  highRiskPercent: number;
+  highestDesignation: { designation: number; avgBurnRate: number } | null;
+}
+
+export interface DepartmentAnalytics {
+  department: { id: number; name: string; location: string };
+  summary: DepartmentAnalyticsSummary;
+  employeeBurnRates: DepartmentAnalyticsEmployee[];
+  byDesignation: DesignationBurnRate[];
+  byShift: ShiftBurnRate[];
+  riskDistribution: RiskDistribution;
+  burnRateOverTime: MonthlyBurnRate[];
+  avgKpiOverTime: KpiPoint[];
+  kpiBurnRateOverTime: KpiBurnRatePoint[];
 }
 
 export interface AlertsFilters {

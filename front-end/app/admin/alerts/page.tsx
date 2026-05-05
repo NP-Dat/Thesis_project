@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { TopBar } from "@/components/layout/TopBar";
 import { Card, CardTitle } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
@@ -121,6 +122,7 @@ export default function AlertsPage() {
               <TableHeader>
                 <TableRow>
                   <TableHead>Type</TableHead>
+                  <TableHead>Employee</TableHead>
                   <TableHead>Department</TableHead>
                   <TableHead>Message</TableHead>
                   <TableHead>Date</TableHead>
@@ -144,6 +146,14 @@ export default function AlertsPage() {
                             : "moderate"
                         }
                       />
+                    </TableCell>
+                    <TableCell className="font-medium whitespace-nowrap">
+                      <Link
+                        href={`/admin/employees/${alert.userId}`}
+                        className="text-terracotta hover:underline"
+                      >
+                        {alert.employeeName}
+                      </Link>
                     </TableCell>
                     <TableCell className="font-medium">
                       {alert.department}

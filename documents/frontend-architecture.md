@@ -90,7 +90,10 @@ front-end/
 │       ├── layout.tsx          # Sidebar + RouteGuard (role=admin)
 │       ├── dashboard/page.tsx  # Admin command centre
 │       ├── departments/
-│       │   └── [id]/page.tsx   # Department drill-down
+│       │   └── [id]/page.tsx   # Department detail (Employees + Analytics tabs)
+│       ├── employees/
+│       │   ├── page.tsx        # Company-wide employee list (sortable)
+│       │   └── [id]/page.tsx   # Single employee detail (gauge, trend, scores)
 │       ├── alerts/page.tsx     # Filterable alerts inbox
 │       └── resources/page.tsx  # Help resource CRUD
 ├── components/
@@ -111,12 +114,19 @@ front-end/
 │   │   ├── EmptyState.tsx      # Icon + title + description + optional action
 │   │   ├── Spinner.tsx         # Animated border spinner
 │   │   └── Skeleton.tsx        # Pulse-animated placeholder
-│   ├── charts/                 # 5 data visualisation components
-│   │   ├── BurnRateGauge.tsx   # Custom SVG semicircle gauge with needle
-│   │   ├── BurnRateLineChart.tsx   # Recharts line chart with threshold bands
-│   │   ├── SectionScoreChart.tsx   # Bar chart (personal vs work burnout)
+│   ├── charts/                       # 12 data visualisation components
+│   │   ├── BurnRateGauge.tsx         # Custom SVG semicircle gauge with needle
+│   │   ├── BurnRateLineChart.tsx     # Recharts line chart with threshold bands
+│   │   ├── SectionScoreChart.tsx     # Bar chart (personal vs work burnout)
 │   │   ├── RiskDistributionChart.tsx # Donut chart (company risk breakdown)
-│   │   └── DepartmentHeatmap.tsx    # Clickable tile grid coloured by burn rate
+│   │   ├── DepartmentHeatmap.tsx     # Clickable tile grid coloured by burn rate
+│   │   ├── DesignationBurnRateChart.tsx      # Bar chart: avg burn rate per designation level
+│   │   ├── ShiftBurnRateChart.tsx            # Bar chart: avg burn rate per shift type
+│   │   ├── EmployeeBurnRateScatter.tsx       # Scatter plot: all employees, colour-coded by risk
+│   │   ├── MonthlyBurnRateChart.tsx          # Area chart: department burn rate trend over months
+│   │   ├── KpiLineChart.tsx                  # Multi-line chart: attendance, productivity, quality over time
+│   │   ├── KpiBurnRateComparisonChart.tsx    # Dual Y-axis composed chart: burn rate vs composite KPI
+│   │   └── DepartmentKpiBarChart.tsx         # Bar chart: avg composite KPI per department
 │   ├── layout/
 │   │   ├── Sidebar.tsx         # Sticky left nav with role-based link sets
 │   │   └── TopBar.tsx          # Page header with serif title and action slot
@@ -128,7 +138,7 @@ front-end/
 │   │   ├── auth.ts             # login, register, getMe
 │   │   ├── quiz.ts             # getQuiz, submitQuiz, getQuizHistory
 │   │   ├── employee.ts         # getEmployeeDashboard, getResources
-│   │   ├── admin.ts            # getAdminDashboard, getDepartmentDetail
+│   │   ├── admin.ts            # getAdminDashboard, getDepartmentDetail, getDepartmentAnalytics, getEmployeeList, getEmployeeDetail
 │   │   ├── alerts.ts           # listAlerts, markAlertRead, markAllAlertsRead
 │   │   └── resources.ts        # listAdminResources, create/update/deleteResource
 │   ├── hooks/                  # TanStack Query wrappers
@@ -136,7 +146,8 @@ front-end/
 │   │   ├── useQuiz.ts          # useQuiz, useSubmitQuiz, useQuizHistory
 │   │   ├── useResources.ts
 │   │   ├── useAdminDashboard.ts
-│   │   ├── useDepartment.ts
+│   │   ├── useDepartment.ts    # useDepartment (with sort/filter), useDepartmentAnalytics
+│   │   ├── useEmployees.ts     # useEmployeeList, useEmployeeDetail
 │   │   ├── useAlerts.ts        # useAlerts, useMarkAlertRead, useMarkAllAlertsRead
 │   │   └── useAdminResources.ts # CRUD mutations with cache invalidation
 │   ├── types.ts                # All TypeScript interfaces (mirrors backend API)
@@ -351,21 +362,90 @@ burnout at a glance.
   - **Department Heatmap** — a tile grid where each department is coloured
     by its average burn rate (interpolated from low-green through
     critical-crimson). Clicking a tile navigates to the department drill-down.
+  - **Department KPI Overview** — `DepartmentKpiBarChart` (bar chart) showing
+    the average composite KPI per department, with tooltip breakdowns of
+    attendance, productivity, and quality scores.
   - **Recent Alerts** — the 5 most recent alerts with type badge, message,
     department, and date. A "View all" link goes to `/admin/alerts`.
 
-### 8.8 Department Drill-down (`/admin/departments/:id`)
+### 8.8 Department Detail (`/admin/departments/:id`)
 
-**Purpose**: Let the admin inspect individual employees within a department,
-shown by anonymous ID for privacy.
+**Purpose**: A two-tab view that lets the admin inspect a department's
+employees and visualise burnout analytics.
 
-- **API**: `GET /api/dashboard/admin/department/:id?page=N&limit=20`
-- **Layout**: Department name and location header, a "Back to Dashboard"
-  link, and a paginated table showing each employee's anonymous ID,
-  designation level, shift type, latest burn rate, risk-level badge, last
-  assessment date, and total assessment count.
+- **Tab navigation**: Employees | Analytics, with a terracotta underline
+  indicator on the active tab.
 
-### 8.9 Alerts (`/admin/alerts`)
+#### 8.8.1 Employees tab
+
+- **API**: `GET /api/dashboard/admin/department/:id?page=N&limit=20&sort=…&order=…&riskLevel=…&shiftType=…&designation=…`
+- **Features**:
+  - **Filter bar** — three dropdowns to filter by risk level (`low` /
+    `moderate` / `high` / `critical`), shift type (`Day` / `Night` /
+    `Rotating`), and designation level (0–5). A "Clear filters" link resets
+    all filters.
+  - **Sortable columns** — clicking a column header toggles ascending /
+    descending sort. Active sort shows a directional chevron icon. Sortable
+    fields: Designation, Shift, Burn Rate, Risk, Last Assessment, Total.
+  - **Clickable employee IDs** — the anonymous Worker ID is a link to
+    `/admin/employees/:userId` for detailed drill-down.
+  - **Pagination** — server-side pagination (20 per page).
+
+#### 8.8.2 Analytics tab
+
+- **API**: `GET /api/dashboard/admin/department/:id/analytics`
+- **Sections**:
+  - **Summary strip** — four stat cards: average burn rate, median burn
+    rate, high/critical risk count (with percentage of department), and
+    highest-risk designation level.
+  - **Employee Burn Rate scatter** — `EmployeeBurnRateScatter` plots every
+    employee's latest burn rate as a dot, colour-coded by risk level, with
+    threshold reference lines at 0.35 / 0.55 / 0.80.
+  - **Monthly Burn Rate trend** — `MonthlyBurnRateChart` (area chart)
+    showing the department's average burn rate per month over time.
+  - **By Designation** — `DesignationBurnRateChart` (bar chart) comparing
+    average burn rate across designation levels 1–5.
+  - **By Shift Type** — `ShiftBurnRateChart` (bar chart) comparing average
+    burn rate across Day / Night / Rotating shifts.
+  - **Risk Distribution** — `RiskDistributionChart` (donut chart) showing
+    the department's low / moderate / high / critical breakdown.
+  - **Average KPI Over Time** — `KpiLineChart` (multi-line chart) showing
+    department-average attendance, productivity, and quality scores month by
+    month.
+  - **KPI vs Burn Rate** — `KpiBurnRateComparisonChart` (dual Y-axis
+    composed chart) overlaying the department's monthly composite KPI with
+    its average burn rate to reveal inverse correlations.
+
+### 8.9 Employees (`/admin/employees`)
+
+**Purpose**: Company-wide searchable and sortable employee list.
+
+- **API**: `GET /api/dashboard/admin/employees?page=N&limit=20&sort=…&order=…`
+- **Layout**: Paginated table with anonymous ID, department, designation,
+  shift type, latest burn rate, risk badge, last assessment date, and
+  assessment count. Clickable rows link to the employee detail page.
+
+### 8.10 Employee Detail (`/admin/employees/:id`)
+
+**Purpose**: Deep dive into a single employee's burnout history, shown
+anonymously for the admin.
+
+- **API**: `GET /api/dashboard/admin/employees/:userId`
+- **Sections**:
+  - **Burn Rate Gauge** — SVG semicircle gauge with the employee's latest
+    burn rate and risk-level label.
+  - **Burn Rate Trend** — line chart showing all historical burn rates over
+    time with risk-threshold reference lines.
+  - **Section Scores** — bar chart comparing the latest personal burnout
+    vs. work-related burnout scores.
+  - **Profile summary** — department, designation level, shift type.
+  - **KPI Performance** — `KpiLineChart` (multi-line chart) showing the
+    employee's monthly attendance, productivity, and quality scores.
+  - **Burn Rate vs Performance** — `KpiBurnRateComparisonChart` (dual
+    Y-axis composed chart) comparing the employee's monthly composite KPI
+    against their burn rate trend.
+
+### 8.11 Alerts (`/admin/alerts`)
 
 **Purpose**: An inbox for system-generated risk alerts, with filtering and
 bulk actions.
@@ -382,7 +462,7 @@ bulk actions.
   - Mutations use TanStack Query's `useMutation` with cache invalidation so
     the table updates instantly without a full refetch.
 
-### 8.10 Admin Resources (`/admin/resources`)
+### 8.12 Admin Resources (`/admin/resources`)
 
 **Purpose**: Full CRUD management for help resources that employees see based
 on their risk level.
@@ -410,42 +490,47 @@ on their risk level.
 
 ## 10. API endpoints consumed
 
-| Method | Endpoint                                  | Used by page          |
-|--------|-------------------------------------------|-----------------------|
-| POST   | `/api/auth/login`                         | Login                 |
-| POST   | `/api/auth/register`                      | Register              |
-| GET    | `/api/quiz`                               | Assessment            |
-| POST   | `/api/quiz/submit`                        | Assessment            |
-| GET    | `/api/quiz/history`                       | History               |
-| GET    | `/api/dashboard/employee`                 | Dashboard, Results    |
-| GET    | `/api/resources`                          | Dashboard, Results    |
-| GET    | `/api/dashboard/admin`                    | Admin Dashboard       |
-| GET    | `/api/dashboard/admin/department/:id`     | Department Drill-down |
-| GET    | `/api/alerts`                             | Alerts                |
-| PATCH  | `/api/alerts/:id/read`                    | Alerts                |
-| PATCH  | `/api/alerts/read-all`                    | Alerts                |
-| GET    | `/api/admin/resources`                    | Admin Resources       |
-| POST   | `/api/admin/resources`                    | Admin Resources       |
-| PUT    | `/api/admin/resources/:id`                | Admin Resources       |
-| DELETE | `/api/admin/resources/:id`                | Admin Resources       |
+| Method | Endpoint                                           | Used by page                    |
+|--------|----------------------------------------------------|---------------------------------|
+| POST   | `/api/auth/login`                                  | Login                           |
+| POST   | `/api/auth/register`                               | Register                        |
+| GET    | `/api/quiz`                                        | Assessment                      |
+| POST   | `/api/quiz/submit`                                 | Assessment                      |
+| GET    | `/api/quiz/history`                                | History                         |
+| GET    | `/api/dashboard/employee`                          | Dashboard, Results              |
+| GET    | `/api/resources`                                   | Dashboard, Results              |
+| GET    | `/api/dashboard/admin`                             | Admin Dashboard                 |
+| GET    | `/api/dashboard/admin/department/:id`              | Department Detail (Employees)   |
+| GET    | `/api/dashboard/admin/department/:id/analytics`    | Department Detail (Analytics)   |
+| GET    | `/api/dashboard/admin/employees`                   | Employees list                  |
+| GET    | `/api/dashboard/admin/employees/:userId`           | Employee Detail                 |
+| GET    | `/api/alerts`                                      | Alerts                          |
+| PATCH  | `/api/alerts/:id/read`                             | Alerts                          |
+| PATCH  | `/api/alerts/read-all`                             | Alerts                          |
+| GET    | `/api/admin/resources`                             | Admin Resources                 |
+| POST   | `/api/admin/resources`                             | Admin Resources                 |
+| PUT    | `/api/admin/resources/:id`                         | Admin Resources                 |
+| DELETE | `/api/admin/resources/:id`                         | Admin Resources                 |
 
 ## 11. Build output
 
-The production build generates 13 routes:
+The production build generates 15 routes:
 
-| Route                       | Type    | Description                      |
-|-----------------------------|---------|----------------------------------|
-| `/`                         | Static  | Redirect based on auth state     |
-| `/login`                    | Static  | Login form                       |
-| `/register`                 | Static  | Registration form                |
-| `/dashboard`                | Static  | Employee dashboard               |
-| `/assessment`               | Static  | CBI quiz (two-step)              |
-| `/results`                  | Static  | Latest assessment result         |
-| `/history`                  | Static  | Past quiz submissions            |
-| `/admin/dashboard`          | Static  | Admin command centre             |
-| `/admin/departments/[id]`   | Dynamic | Department drill-down            |
-| `/admin/alerts`             | Static  | Alerts inbox                     |
-| `/admin/resources`          | Static  | Help resource management         |
+| Route                       | Type    | Description                                 |
+|-----------------------------|---------|---------------------------------------------|
+| `/`                         | Static  | Redirect based on auth state                |
+| `/login`                    | Static  | Login form                                  |
+| `/register`                 | Static  | Registration form                           |
+| `/dashboard`                | Static  | Employee dashboard                          |
+| `/assessment`               | Static  | CBI quiz (two-step)                         |
+| `/results`                  | Static  | Latest assessment result                    |
+| `/history`                  | Static  | Past quiz submissions                       |
+| `/admin/dashboard`          | Static  | Admin command centre                        |
+| `/admin/departments/[id]`   | Dynamic | Department detail (Employees + Analytics)   |
+| `/admin/employees`          | Static  | Company-wide employee list                  |
+| `/admin/employees/[id]`     | Dynamic | Single employee detail                      |
+| `/admin/alerts`             | Static  | Alerts inbox                                |
+| `/admin/resources`          | Static  | Help resource management                    |
 
 All pages are client-rendered (`"use client"`) because they depend on
 `localStorage`-based authentication and TanStack Query hooks. Static in this

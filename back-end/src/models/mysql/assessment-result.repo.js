@@ -125,3 +125,34 @@ export async function countAssessmentsByUser(userId, conn = mysqlPool) {
   );
   return rows[0].n;
 }
+
+/**
+ * All assessment rows for employees in a given department, joined with
+ * hr_profiles to get designation / shift_type. Ordered by taken_at ASC.
+ */
+export async function listAssessmentsByDepartment(departmentId, conn = mysqlPool) {
+  const [rows] = await conn.query(
+    `SELECT ar.id, ar.user_id, ar.personal_burnout_score, ar.work_burnout_score,
+            ar.mental_fatigue_score, ar.predicted_burn_rate, ar.risk_level, ar.taken_at,
+            hp.designation, hp.shift_type
+       FROM assessment_results ar
+       JOIN hr_profiles hp ON hp.user_id = ar.user_id
+      WHERE hp.department_id = ?
+      ORDER BY ar.taken_at ASC`,
+    [departmentId]
+  );
+  return rows;
+}
+
+export async function countAssessmentsByUsers(userIds, conn = mysqlPool) {
+  if (!userIds.length) return new Map();
+  const [rows] = await conn.query(
+    `SELECT user_id, COUNT(*) AS n FROM assessment_results
+      WHERE user_id IN (?)
+      GROUP BY user_id`,
+    [userIds]
+  );
+  const map = new Map();
+  for (const r of rows) map.set(r.user_id, r.n);
+  return map;
+}

@@ -100,7 +100,8 @@ back-end/
 │   │   │   ├── hr-profile.repo.js
 │   │   │   ├── assessment-result.repo.js
 │   │   │   ├── alert.repo.js
-│   │   │   └── help-resource.repo.js
+│   │   │   ├── help-resource.repo.js
+│   │   │   └── employee-kpi.repo.js
 │   │   └── mongo/
 │   │       ├── cbi-quiz.model.js
 │   │       └── quiz-submission.model.js
@@ -267,6 +268,9 @@ Computes:
   employee.
 - `departments[]`: same metrics bucketed by department, including
   `highRiskCount` and a per-department risk distribution.
+- `departmentKpis[]`: average composite KPI (mean of attendance,
+  productivity, quality) per department, sourced from `employee_kpis` via
+  `employee-kpi.repo.listAvgKpiPerDepartment()`.
 - `recentAlerts[]`: 10 most recent alerts.
 
 The latest-per-employee row set is produced with a single SQL query that
@@ -280,6 +284,27 @@ the heatmap can be rendered in one HTTP call.
 latest-per-user dataset by department and pages the result. Employees are
 shown by **anonymous ID** (`Worker #0001`, …) to satisfy the privacy
 requirement in the thesis.
+
+### 11.4 Department analytics (`GET /api/dashboard/admin/department/:departmentId/analytics`)
+
+In addition to burn-rate aggregations (scatter, monthly trend, designation
+and shift breakdowns, risk distribution), the analytics endpoint now
+includes KPI data from `employee_kpis`:
+
+- `avgKpiOverTime[]`: monthly department-wide averages of attendance,
+  productivity, quality, and a composite KPI score.
+- `kpiBurnRateOverTime[]`: monthly composite KPI alongside average burn
+  rate for dual-axis comparison charts.
+
+### 11.5 Admin employee detail (`GET /api/dashboard/admin/employees/:userId`)
+
+Extended with:
+
+- `kpiData[]`: the employee's monthly KPI snapshots (attendance,
+  productivity, quality, overtime, tasks completed, days absent, composite).
+- `kpiBurnRateComparison[]`: monthly composite KPI aligned with the
+  employee's average burn rate per month, enabling Burn Rate vs Performance
+  comparison charts.
 
 ## 12. Resources
 

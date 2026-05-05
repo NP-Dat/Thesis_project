@@ -122,7 +122,30 @@ CREATE TABLE alerts (
 
 
 -- ---------------------------------------------------------------------
--- 6. Curated mental-health resources (admin-managed)
+-- 6. Employee KPIs (monthly performance snapshot per employee)
+-- ---------------------------------------------------------------------
+DROP TABLE IF EXISTS employee_kpis;
+CREATE TABLE employee_kpis (
+  id                 INT          NOT NULL AUTO_INCREMENT,
+  user_id            INT          NOT NULL,
+  period_date        DATE         NOT NULL COMMENT 'First day of the month (e.g. 2026-01-01)',
+  attendance_rate    FLOAT        NOT NULL COMMENT 'Percentage 0–100',
+  productivity_score FLOAT        NOT NULL COMMENT 'Performance metric 0–100',
+  overtime_hours     FLOAT        NOT NULL COMMENT 'Total overtime hours in the month',
+  tasks_completed    INT          NOT NULL COMMENT 'Number of tasks finished that month',
+  quality_score      FLOAT        NOT NULL COMMENT 'Work quality metric 0–100',
+  days_absent        INT          NOT NULL COMMENT 'Days absent in the month',
+  created_at         TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  UNIQUE KEY uq_kpi_user_period (user_id, period_date),
+  KEY idx_kpi_period (period_date),
+  CONSTRAINT fk_kpi_user
+      FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+-- ---------------------------------------------------------------------
+-- 7. Curated mental-health resources (admin-managed)
 -- ---------------------------------------------------------------------
 DROP TABLE IF EXISTS help_resources;
 CREATE TABLE help_resources (

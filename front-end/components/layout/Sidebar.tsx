@@ -10,6 +10,7 @@ import {
   BookOpen,
   LogOut,
   Activity,
+  Users,
 } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
 import { cn } from "@/lib/utils";
@@ -30,6 +31,7 @@ const employeeLinks: NavItem[] = [
 
 const adminLinks: NavItem[] = [
   { href: "/admin/dashboard", label: "Dashboard", icon: <LayoutDashboard size={18} /> },
+  { href: "/admin/employees", label: "Employees", icon: <Users size={18} /> },
   { href: "/admin/alerts", label: "Alerts", icon: <AlertTriangle size={18} /> },
   { href: "/admin/resources", label: "Resources", icon: <BookOpen size={18} /> },
 ];
@@ -50,7 +52,8 @@ export function Sidebar({ role }: { role: UserRole }) {
 
       <nav className="flex-1 px-3 py-4 space-y-1">
         {links.map((item) => {
-          const active = pathname === item.href;
+          const active =
+            pathname === item.href || pathname.startsWith(item.href + "/");
           return (
             <Link
               key={item.href}

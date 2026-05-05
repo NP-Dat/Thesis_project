@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Skeleton } from "@/components/ui/Skeleton";
 import { RiskDistributionChart } from "@/components/charts/RiskDistributionChart";
 import { DepartmentHeatmap } from "@/components/charts/DepartmentHeatmap";
+import { DepartmentKpiBarChart } from "@/components/charts/DepartmentKpiBarChart";
 import { useAdminDashboard } from "@/lib/hooks/useAdminDashboard";
 import { formatBurnRate } from "@/lib/risk";
 import { Users, ClipboardList, Activity, AlertTriangle } from "lucide-react";
@@ -40,7 +41,10 @@ function StatCard({
 
 function AlertRow({ alert }: { alert: Alert }) {
   return (
-    <div className="flex items-start gap-3 py-3 border-b border-cream last:border-0">
+    <Link
+      href={`/admin/employees/${alert.userId}`}
+      className="flex items-start gap-3 py-3 border-b border-cream last:border-0 hover:bg-sand/30 transition-colors rounded-[var(--radius-card)] px-2 -mx-2"
+    >
       <Badge
         level={
           alert.alertType === "critical_risk"
@@ -52,7 +56,11 @@ function AlertRow({ alert }: { alert: Alert }) {
         className="mt-0.5"
       />
       <div className="flex-1 min-w-0">
-        <p className="text-sm text-near-black">{alert.message}</p>
+        <p className="text-sm text-near-black">
+          <span className="font-medium">{alert.employeeName}</span>
+          {" — "}
+          {alert.message}
+        </p>
         <div className="flex items-center gap-2 mt-1 text-xs text-stone">
           <span>{alert.department}</span>
           <span>|</span>
@@ -64,7 +72,7 @@ function AlertRow({ alert }: { alert: Alert }) {
           </span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
@@ -89,7 +97,7 @@ export default function AdminDashboardPage() {
 
   if (!data) return null;
 
-  const { companyOverview, departments, recentAlerts } = data;
+  const { companyOverview, departments, departmentKpis, recentAlerts } = data;
   const highRiskTotal =
     companyOverview.riskDistribution.high +
     companyOverview.riskDistribution.critical;
@@ -137,6 +145,15 @@ export default function AdminDashboardPage() {
             </CardContent>
           </Card>
         </div>
+
+        {departmentKpis.length > 0 && (
+          <Card whisper>
+            <CardTitle className="mb-4">Department KPI Overview</CardTitle>
+            <CardContent>
+              <DepartmentKpiBarChart data={departmentKpis} />
+            </CardContent>
+          </Card>
+        )}
 
         <Card>
           <div className="flex items-center justify-between mb-4">

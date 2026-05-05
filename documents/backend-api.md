@@ -426,6 +426,24 @@ Fetch the full admin command center data: department stats, company overview, an
         }
       }
     ],
+    "departmentKpis": [
+      {
+        "departmentId": 1,
+        "name": "Assembly Line A",
+        "avgCompositeKpi": 72.35,
+        "avgAttendance": 81.20,
+        "avgProductivity": 68.40,
+        "avgQuality": 67.45
+      },
+      {
+        "departmentId": 2,
+        "name": "Maintenance",
+        "avgCompositeKpi": 78.90,
+        "avgAttendance": 85.50,
+        "avgProductivity": 74.60,
+        "avgQuality": 76.60
+      }
+    ],
     "recentAlerts": [
       {
         "id": 101,
@@ -454,11 +472,23 @@ Fetch the full admin command center data: department stats, company overview, an
 
 ### GET `/api/dashboard/admin/department/:departmentId`
 
-Drill down into a single department. Returns an anonymised list of employees with their latest risk levels.
+Drill down into a single department. Returns an anonymised list of employees with their latest risk levels. Supports server-side sorting and filtering.
 
 **Access:** Admin
 
 **Headers:** `Authorization: Bearer <token>`
+
+**Query params:** `?page=1&limit=20&sort=burnRate&order=desc&riskLevel=high&shiftType=Night&designation=2`
+
+| Param         | Type   | Default    | Description                                          |
+|---------------|--------|------------|------------------------------------------------------|
+| `page`        | number | 1          | Page number                                          |
+| `limit`       | number | 20         | Rows per page (max 100)                              |
+| `sort`        | string | `burnRate` | Sort field: `burnRate`, `designation`, `shift`, `lastAssessment`, `assessmentCount`, `riskLevel` |
+| `order`       | string | `desc`     | Sort direction: `asc` or `desc`                      |
+| `riskLevel`   | string | —          | Filter by risk: `low`, `moderate`, `high`, `critical`|
+| `shiftType`   | string | —          | Filter by shift: `Day`, `Night`, `Rotating`          |
+| `designation` | number | —          | Filter by designation level (0–5)                    |
 
 **Response `200`:**
 
@@ -473,6 +503,7 @@ Drill down into a single department. Returns an anonymised list of employees wit
     },
     "employees": [
       {
+        "userId": 47,
         "anonymousId": "Worker #0047",
         "designation": 2,
         "shiftType": "Night",
@@ -482,6 +513,7 @@ Drill down into a single department. Returns an anonymised list of employees wit
         "assessmentCount": 5
       },
       {
+        "userId": 12,
         "anonymousId": "Worker #0012",
         "designation": 3,
         "shiftType": "Day",
@@ -497,6 +529,198 @@ Drill down into a single department. Returns an anonymised list of employees wit
       "totalItems": 35,
       "totalPages": 2
     }
+  }
+}
+```
+
+---
+
+### GET `/api/dashboard/admin/department/:departmentId/analytics`
+
+Fetch aggregated analytics for a department: summary stats, per-employee burn rates, breakdowns by designation and shift, risk distribution, and monthly trend.
+
+**Access:** Admin
+
+**Headers:** `Authorization: Bearer <token>`
+
+**Response `200`:**
+
+```json
+{
+  "success": true,
+  "data": {
+    "department": { "id": 1, "name": "Assembly Line A", "location": "Building 1" },
+    "summary": {
+      "avgBurnRate": 0.48,
+      "medianBurnRate": 0.45,
+      "totalEmployees": 35,
+      "highRiskCount": 13,
+      "highRiskPercent": 37,
+      "highestDesignation": { "designation": 2, "avgBurnRate": 0.61 }
+    },
+    "employeeBurnRates": [
+      {
+        "anonymousId": "Worker #0047",
+        "burnRate": 0.91,
+        "riskLevel": "critical",
+        "designation": 2,
+        "shiftType": "Night"
+      }
+    ],
+    "byDesignation": [
+      { "designation": 1, "avgBurnRate": 0.38, "count": 8 },
+      { "designation": 2, "avgBurnRate": 0.61, "count": 12 }
+    ],
+    "byShift": [
+      { "shift": "Day", "avgBurnRate": 0.42, "count": 15 },
+      { "shift": "Night", "avgBurnRate": 0.58, "count": 12 },
+      { "shift": "Rotating", "avgBurnRate": 0.44, "count": 8 }
+    ],
+    "riskDistribution": { "low": 10, "moderate": 12, "high": 8, "critical": 5 },
+    "burnRateOverTime": [
+      { "month": "2026-01", "avgBurnRate": 0.44, "assessmentCount": 28 },
+      { "month": "2026-02", "avgBurnRate": 0.47, "assessmentCount": 35 }
+    ],
+    "avgKpiOverTime": [
+      {
+        "month": "2026-01",
+        "attendanceRate": 82.10,
+        "productivityScore": 70.50,
+        "qualityScore": 68.20,
+        "overtimeHours": 12.5,
+        "tasksCompleted": 45,
+        "daysAbsent": 2,
+        "compositeKpi": 73.60
+      },
+      {
+        "month": "2026-02",
+        "attendanceRate": 80.40,
+        "productivityScore": 69.10,
+        "qualityScore": 67.80,
+        "overtimeHours": 14.2,
+        "tasksCompleted": 42,
+        "daysAbsent": 3,
+        "compositeKpi": 72.43
+      }
+    ],
+    "kpiBurnRateOverTime": [
+      { "month": "2026-01", "compositeKpi": 73.60, "avgBurnRate": 0.44 },
+      { "month": "2026-02", "compositeKpi": 72.43, "avgBurnRate": 0.47 }
+    ]
+  }
+}
+```
+
+---
+
+### GET `/api/dashboard/admin/employees`
+
+List all employees company-wide with their latest assessment, sortable and paginated.
+
+**Access:** Admin
+
+**Headers:** `Authorization: Bearer <token>`
+
+**Query params:** `?page=1&limit=20&sort=burnRate&order=desc`
+
+| Param   | Type   | Default    | Description                                          |
+|---------|--------|------------|------------------------------------------------------|
+| `page`  | number | 1          | Page number                                          |
+| `limit` | number | 20         | Rows per page (max 100)                              |
+| `sort`  | string | `burnRate` | Sort field: `burnRate`, `lastAssessment`, `assessmentCount`, `department`, `riskLevel` |
+| `order` | string | `desc`     | Sort direction: `asc` or `desc`                      |
+
+**Response `200`:**
+
+```json
+{
+  "success": true,
+  "data": {
+    "employees": [
+      {
+        "userId": 47,
+        "anonymousId": "Worker #0047",
+        "department": "Assembly Line A",
+        "designation": 2,
+        "shiftType": "Night",
+        "latestBurnRate": 0.91,
+        "riskLevel": "critical",
+        "lastAssessmentDate": "2026-05-02T14:20:00.000Z",
+        "assessmentCount": 5
+      }
+    ],
+    "pagination": {
+      "page": 1,
+      "limit": 20,
+      "totalItems": 150,
+      "totalPages": 8
+    }
+  }
+}
+```
+
+---
+
+### GET `/api/dashboard/admin/employees/:userId`
+
+Fetch a single employee's detail for the admin view, including full assessment history trend.
+
+**Access:** Admin
+
+**Headers:** `Authorization: Bearer <token>`
+
+**Response `200`:**
+
+```json
+{
+  "success": true,
+  "data": {
+    "anonymousId": "Worker #0047",
+    "department": "Assembly Line A",
+    "designation": 2,
+    "shiftType": "Night",
+    "latestAssessment": {
+      "assessmentId": 42,
+      "predictedBurnRate": 0.91,
+      "riskLevel": "critical",
+      "personalBurnoutScore": 78.5,
+      "workBurnoutScore": 82.1,
+      "mentalFatigueScore": 8.0,
+      "takenAt": "2026-05-02T14:20:00.000Z"
+    },
+    "trendData": [
+      { "date": "2026-03-15", "burnRate": 0.55, "riskLevel": "high" },
+      { "date": "2026-04-10", "burnRate": 0.72, "riskLevel": "high" },
+      { "date": "2026-05-02", "burnRate": 0.91, "riskLevel": "critical" }
+    ],
+    "totalAssessments": 3,
+    "kpiData": [
+      {
+        "month": "2026-01",
+        "attendanceRate": 78.50,
+        "productivityScore": 65.20,
+        "qualityScore": 62.80,
+        "overtimeHours": 18.0,
+        "tasksCompleted": 38,
+        "daysAbsent": 4,
+        "compositeKpi": 68.83
+      },
+      {
+        "month": "2026-02",
+        "attendanceRate": 74.30,
+        "productivityScore": 60.10,
+        "qualityScore": 58.90,
+        "overtimeHours": 22.5,
+        "tasksCompleted": 32,
+        "daysAbsent": 5,
+        "compositeKpi": 64.43
+      }
+    ],
+    "kpiBurnRateComparison": [
+      { "month": "2026-01", "compositeKpi": 68.83, "avgBurnRate": 0.55 },
+      { "month": "2026-02", "compositeKpi": 64.43, "avgBurnRate": 0.72 },
+      { "month": "2026-03", "compositeKpi": null, "avgBurnRate": 0.91 }
+    ]
   }
 }
 ```
@@ -774,24 +998,27 @@ Health check for the AI service.
 
 ## API Route Summary
 
-| Method | Route                                    | Access   | Purpose                            |
-|--------|------------------------------------------|----------|------------------------------------|
-| POST   | `/api/auth/register`                     | Public   | Create account + simulated HR data |
-| POST   | `/api/auth/login`                        | Public   | Authenticate, get JWT              |
-| GET    | `/api/auth/me`                           | Any      | Get current user profile           |
-| GET    | `/api/quiz`                              | Employee | Fetch CBI quiz questions           |
-| POST   | `/api/quiz/submit`                       | Employee | Submit answers, get prediction     |
-| GET    | `/api/quiz/history`                      | Employee | Past quiz submissions (paginated)  |
-| GET    | `/api/dashboard/employee`                | Employee | Employee dashboard data            |
-| GET    | `/api/resources`                         | Employee | Help resources for risk level      |
-| GET    | `/api/dashboard/admin`                   | Admin    | Admin command center overview      |
-| GET    | `/api/dashboard/admin/department/:id`    | Admin    | Department drill-down              |
-| GET    | `/api/alerts`                            | Admin    | List alerts (filterable)           |
-| PATCH  | `/api/alerts/:alertId/read`              | Admin    | Mark alert as read                 |
-| PATCH  | `/api/alerts/read-all`                   | Admin    | Mark all alerts as read            |
-| GET    | `/api/admin/resources`                   | Admin    | List all help resources            |
-| POST   | `/api/admin/resources`                   | Admin    | Create a help resource             |
-| PUT    | `/api/admin/resources/:resourceId`       | Admin    | Update a help resource             |
-| DELETE | `/api/admin/resources/:resourceId`       | Admin    | Delete a help resource             |
-| POST   | `/api/predict` *(AI service)*            | Internal | Predict burn rate                  |
-| GET    | `/api/health` *(AI service)*             | Internal | AI service health check            |
+| Method | Route                                               | Access   | Purpose                                 |
+|--------|-----------------------------------------------------|----------|-----------------------------------------|
+| POST   | `/api/auth/register`                                | Public   | Create account + simulated HR data      |
+| POST   | `/api/auth/login`                                   | Public   | Authenticate, get JWT                   |
+| GET    | `/api/auth/me`                                      | Any      | Get current user profile                |
+| GET    | `/api/quiz`                                         | Employee | Fetch CBI quiz questions                |
+| POST   | `/api/quiz/submit`                                  | Employee | Submit answers, get prediction          |
+| GET    | `/api/quiz/history`                                 | Employee | Past quiz submissions (paginated)       |
+| GET    | `/api/dashboard/employee`                           | Employee | Employee dashboard data                 |
+| GET    | `/api/resources`                                    | Employee | Help resources for risk level           |
+| GET    | `/api/dashboard/admin`                              | Admin    | Admin command center overview           |
+| GET    | `/api/dashboard/admin/department/:id`               | Admin    | Department drill-down (sort/filter)     |
+| GET    | `/api/dashboard/admin/department/:id/analytics`     | Admin    | Department analytics & charts           |
+| GET    | `/api/dashboard/admin/employees`                    | Admin    | Company-wide employee list (sortable)   |
+| GET    | `/api/dashboard/admin/employees/:userId`            | Admin    | Single employee detail for admin        |
+| GET    | `/api/alerts`                                       | Admin    | List alerts (filterable)                |
+| PATCH  | `/api/alerts/:alertId/read`                         | Admin    | Mark alert as read                      |
+| PATCH  | `/api/alerts/read-all`                              | Admin    | Mark all alerts as read                 |
+| GET    | `/api/admin/resources`                              | Admin    | List all help resources                 |
+| POST   | `/api/admin/resources`                              | Admin    | Create a help resource                  |
+| PUT    | `/api/admin/resources/:resourceId`                  | Admin    | Update a help resource                  |
+| DELETE | `/api/admin/resources/:resourceId`                  | Admin    | Delete a help resource                  |
+| POST   | `/api/predict` *(AI service)*                       | Internal | Predict burn rate                       |
+| GET    | `/api/health` *(AI service)*                        | Internal | AI service health check                 |
