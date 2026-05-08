@@ -145,7 +145,13 @@
   \vspace{0.2cm}
   {\normalsize Student ID: ITITIU22028\par}
 
-  \vspace{0.9cm}
+  \vspace{0.6cm}
+
+  {\normalsize Instructor\par}
+  \vspace{0.2cm}
+  {\normalsize\bfseries Dang Tam Nhan\par}
+
+  \vspace{0.6cm}
 
   {\normalsize
     A thesis submitted to the School of Computer Science and Engineering\\
@@ -379,7 +385,7 @@ tools and timely access to support resources.
 
 \subsection{Motivating Scenario and Use Cases}
 
-Consider a mid-sized manufacturing plant employing 500 workers distributed
+Consider a mid-sized manufacturing plant employing 200 workers distributed
 across six departments, operating on rotating day and night shifts. The
 plant's HR team consists of three staff members who are responsible for
 monitoring attendance, handling grievances, and managing benefits. Under
@@ -928,25 +934,9 @@ React/Next.js frontend, a Node.js/Express backend, and a Python/FastAPI AI
 microservice, supported by MySQL and MongoDB databases. Each tier
 communicates via RESTful HTTP APIs using a consistent JSON envelope format.
 
-% ── IMAGE PLACEHOLDER ──────────────────────────────────────────────────────
-% IMAGE: System architecture diagram (draw.io or similar tool)
-% Content: Three boxes arranged horizontally:
-%   Left:  "React/Next.js Frontend (port 5173)" with routes listed
-%   Center: "Node.js/Express Backend (port 3000)" with /api routes listed
-%   Right: "Python/FastAPI AI Service (port 8000)" with /api/predict
-%   Below center: Two database cylinders "MySQL" and "MongoDB"
-%   Arrows: Frontend <--REST--> Backend <--REST--> AI Service
-%           Backend --> MySQL, Backend --> MongoDB
-% Size: Full page width, approximately 8cm tall
-% ───────────────────────────────────────────────────────────────────────────
 \begin{figure}[H]
   \centering
-  \fbox{\parbox[c][6cm][c]{0.85\linewidth}{\centering
-    \textit{[Insert system architecture diagram here]}\\[6pt]
-    React/Next.js Frontend $\longleftrightarrow$ Node.js/Express Backend
-    $\longleftrightarrow$ Python/FastAPI AI Service\\[6pt]
-    Backend $\longrightarrow$ MySQL \quad Backend $\longrightarrow$ MongoDB
-  }}
+  \includegraphics[width=0.95\linewidth]{02-system-architecture.png}
   \caption{High-level system architecture.}
   \label{fig:system-architecture}
 \end{figure}
@@ -969,41 +959,9 @@ development of each component.
 MySQL stores all structured relational data. The schema consists of seven
 tables with enforced foreign key relationships and cascading deletes.
 
-% ── IMAGE PLACEHOLDER ──────────────────────────────────────────────────────
-% IMAGE: ER diagram showing all MySQL tables and their relationships
-% Content: Seven tables with columns, primary keys, and foreign key arrows:
-%   users (id PK, email, password_hash, first_name, last_name, gender,
-%          date_of_birth, role, is_active, created_at, updated_at)
-%   departments (id PK, name, location, created_at)
-%   hr_profiles (id PK, user_id FK->users UNIQUE, department_id FK->departments,
-%                date_of_joining, company_type, wfh_available, designation,
-%                resource_allocation, shift_type, created_at, updated_at)
-%   assessment_results (id PK, user_id FK->users, personal_burnout_score,
-%                       work_burnout_score, mental_fatigue_score,
-%                       predicted_burn_rate, risk_level, taken_at)
-%   alerts (id PK, assessment_result_id FK, user_id FK, alert_type,
-%           message, is_read, created_at)
-%   employee_kpis (id PK, user_id FK, period_date, attendance_rate,
-%                  productivity_score, overtime_hours, tasks_completed,
-%                  quality_score, days_absent, created_at)
-%   help_resources (id PK, title, description, url, min_risk_level,
-%                   is_active, created_at)
-% Relationships:
-%   users 1--1 hr_profiles
-%   users 1--* assessment_results
-%   users 1--* employee_kpis
-%   departments 1--* hr_profiles
-%   assessment_results 1--* alerts
-% Size: Full page width
-% ───────────────────────────────────────────────────────────────────────────
 \begin{figure}[H]
   \centering
-  \fbox{\parbox[c][6cm][c]{0.85\linewidth}{\centering
-    \textit{[Insert MySQL ER diagram here]}\\[6pt]
-    Tables: users, departments, hr\_profiles, assessment\_results,\\
-    alerts, employee\_kpis, help\_resources\\[6pt]
-    Show primary keys, foreign keys, and relationship cardinalities
-  }}
+  \includegraphics[width=0.95\linewidth]{03-er-diagram.png}
   \caption{Entity-relationship diagram of the MySQL database.}
   \label{fig:er-diagram}
 \end{figure}
@@ -1074,27 +1032,9 @@ from schema flexibility:
 The Express backend follows a strict four-layer architecture that separates
 HTTP concerns from business logic and data access.
 
-% ── IMAGE PLACEHOLDER ──────────────────────────────────────────────────────
-% IMAGE: Backend layer diagram (vertical stack)
-% Content: Four horizontal layers stacked vertically with downward arrows:
-%   Layer 1: "Routes" - thin Express routers, attach middleware (auth + validation)
-%   Layer 2: "Controllers" - parse params, call services, format response envelope
-%   Layer 3: "Services" - business rules (scoring, risk mapping, alert rules,
-%            AI dispatch, transactions)
-%   Layer 4: "Repositories" - split into two:
-%            Left: "models/mysql/" (parameterised SQL via mysql2)
-%            Right: "models/mongo/" (Mongoose schemas + collection logic)
-%   Below Layer 4: Two cylinders: MySQL and MongoDB
-% Size: About 8cm wide, 7cm tall
-% ───────────────────────────────────────────────────────────────────────────
 \begin{figure}[H]
   \centering
-  \fbox{\parbox[c][5cm][c]{0.75\linewidth}{\centering
-    \textit{[Insert backend layer diagram here]}\\[6pt]
-    Routes $\rightarrow$ Controllers $\rightarrow$ Services
-    $\rightarrow$ Repositories\\[6pt]
-    Repositories: MySQL repos (parameterised SQL) | Mongoose models
-  }}
+  \includegraphics[width=0.80\linewidth]{04-backend-layer.png}
   \caption{Layered architecture of the Express backend.}
   \label{fig:backend-layers}
 \end{figure}
@@ -1139,38 +1079,9 @@ The quiz submission endpoint implements a multi-step pipeline that
 transforms raw CBI answers into a predicted burn rate. The pipeline
 operates as follows:
 
-% ── IMAGE PLACEHOLDER ──────────────────────────────────────────────────────
-% IMAGE: Flow diagram of the quiz submission pipeline
-% Content: Vertical flowchart with the following steps:
-%   1. "Receive 13 answers" (array of {questionId, answerValue})
-%   2. "Validate answers" (correct count, valid IDs, no duplicates,
-%      allowed values 0/25/50/75/100)
-%   3. "Apply reverse scoring" (Question 10: adjustedValue = 100 - rawValue)
-%   4. "Calculate section averages"
-%      personalBurnoutAvg = avg(questions 1-6), range 0-100
-%      workBurnoutAvg = avg(questions 7-13), range 0-100
-%   5. "Calculate mentalFatigueScore"
-%      = ((personal + work) / 2) / 10, range 0.0-10.0
-%   6. "Save raw submission to MongoDB"
-%   7. "Fetch HR profile from MySQL" (designation, resource_allocation)
-%   8. "Call AI service" (3 features -> predicted burn rate)
-%   9. "Map burn rate to risk level"
-%      low < 0.35, moderate < 0.55, high < 0.80, critical >= 0.80
-%   10. "Save assessment_results + evaluate alert rules" (MySQL transaction)
-%   11. "Return result to frontend"
-% Size: Full page width, tall (about 12cm)
-% ───────────────────────────────────────────────────────────────────────────
 \begin{figure}[H]
   \centering
-  \fbox{\parbox[c][8cm][c]{0.85\linewidth}{\centering
-    \textit{[Insert quiz scoring pipeline flowchart here]}\\[6pt]
-    13 answers $\rightarrow$ Validate $\rightarrow$ Reverse score
-    $\rightarrow$ Section averages\\[4pt]
-    $\rightarrow$ Mental fatigue score $\rightarrow$ Save to MongoDB\\[4pt]
-    $\rightarrow$ Fetch HR profile $\rightarrow$ Call AI service\\[4pt]
-    $\rightarrow$ Map risk level $\rightarrow$ Save to MySQL + alerts\\[4pt]
-    $\rightarrow$ Return result
-  }}
+  \includegraphics[width=0.85\linewidth]{05-quiz-pipeline.png}
   \caption{Quiz submission scoring pipeline.}
   \label{fig:quiz-pipeline}
 \end{figure}
@@ -1303,30 +1214,9 @@ offers no feature importance.
 The Python AI microservice is a thin HTTP wrapper around the serialised
 model:
 
-% ── IMAGE PLACEHOLDER ──────────────────────────────────────────────────────
-% IMAGE: AI service internal architecture diagram
-% Content: A box labeled "FastAPI Application" containing:
-%   - "Lifespan: load burnout_model.pkl into memory (once at startup)"
-%   - "POST /api/predict":
-%       1. Validate input with Pydantic (designation 1-5,
-%          resourceAllocation 1-10, mentalFatigueScore 0-10)
-%       2. model.predict([[d, ra, mfs]])
-%       3. Clamp result to [0, 1]
-%       4. Return {success: true, data: {predictedBurnRate: float}}
-%   - "GET /api/health":
-%       Return {status: "ok", model: "random_forest_v1", uptime: float}
-%   - "CORS middleware: allow localhost:3000 and localhost:5173"
-% Size: About 10cm wide, 5cm tall
-% ───────────────────────────────────────────────────────────────────────────
 \begin{figure}[H]
   \centering
-  \fbox{\parbox[c][4.5cm][c]{0.80\linewidth}{\centering
-    \textit{[Insert AI service architecture diagram here]}\\[6pt]
-    Startup: load \texttt{burnout\_model.pkl} into memory\\[4pt]
-    \texttt{POST /api/predict}: validate $\rightarrow$ predict
-    $\rightarrow$ clamp $\rightarrow$ respond\\[4pt]
-    \texttt{GET /api/health}: status check for monitoring
-  }}
+  \includegraphics[width=0.85\linewidth]{06-ai-service-arch.png}
   \caption{Architecture of the Python/FastAPI AI microservice.}
   \label{fig:ai-service-arch}
 \end{figure}
@@ -1360,26 +1250,9 @@ authentication routes, employee portal routes (protected by
 \texttt{role = ``employee''}), and admin portal routes (protected by
 \texttt{role = ``admin''}).
 
-% ── IMAGE PLACEHOLDER ──────────────────────────────────────────────────────
-% IMAGE: Application sitemap / navigation flow diagram
-% Content: Tree diagram showing three branches:
-%   Public: /login, /register
-%   Employee (sidebar nav): /dashboard, /assessment, /results, /history
-%   Admin (sidebar nav): /admin/dashboard, /admin/departments/[id],
-%                        /admin/employees, /admin/employees/[id],
-%                        /admin/alerts, /admin/resources
-% Show RouteGuard protecting each branch
-% Size: Full page width, about 6cm tall
-% ───────────────────────────────────────────────────────────────────────────
 \begin{figure}[H]
   \centering
-  \fbox{\parbox[c][5cm][c]{0.85\linewidth}{\centering
-    \textit{[Insert application sitemap / navigation flow diagram here]}\\[6pt]
-    Public: /login, /register\\[4pt]
-    Employee portal: /dashboard, /assessment, /results, /history\\[4pt]
-    Admin portal: /admin/dashboard, /admin/departments/[id],\\
-    /admin/employees, /admin/alerts, /admin/resources
-  }}
+  \includegraphics[width=0.90\linewidth]{07-sitemap.png}
   \caption{Application route structure and navigation flow.}
   \label{fig:sitemap}
 \end{figure}
@@ -1645,25 +1518,9 @@ predictions deviate from actual values by less than 5 percentage points on
 the 0--1 scale. The model outperforms Linear Regression on all three
 metrics, with a 3.6 percentage-point improvement in $R^{2}$.
 
-% ── IMAGE PLACEHOLDER ──────────────────────────────────────────────────────
-% IMAGE: Feature importance bar chart
-% Source: Run ai-service/notebooks/training.ipynb, cell producing
-%   the feature importance horizontal bar chart
-% Content: Three horizontal bars:
-%   Mental Fatigue Score: ~0.85 (dominant)
-%   Resource Allocation: ~0.10
-%   Designation: ~0.05
-% Caption explains that mental fatigue accounts for >80% of predictive power
-% ───────────────────────────────────────────────────────────────────────────
 \begin{figure}[H]
   \centering
-  \fbox{\parbox[c][5cm][c]{0.70\linewidth}{\centering
-    \textit{[Insert feature importance bar chart here]}\\[6pt]
-    Source: \texttt{notebooks/training.ipynb}\\[4pt]
-    Mental Fatigue Score $\approx 85\%$\\
-    Resource Allocation $\approx 10\%$\\
-    Designation $\approx 5\%$
-  }}
+  \includegraphics[width=0.75\linewidth]{08-feature-importance.png}
   \caption{Random Forest feature importance scores.}
   \label{fig:feature-importance}
 \end{figure}
@@ -1674,79 +1531,30 @@ approximately 85\% of the model's predictive power. This aligns with
 domain intuition: a psychologically exhausted worker is at high risk of
 burnout regardless of seniority level or assigned workload.
 
-% ── IMAGE PLACEHOLDER ──────────────────────────────────────────────────────
-% IMAGE: Burn Rate distribution histogram
-% Source: training.ipynb cell showing the histogram of the Burn Rate column
-% Content: Histogram showing burn rate distribution across the dataset,
-%   most values cluster between 0.2 and 0.6, roughly normal distribution
-% ───────────────────────────────────────────────────────────────────────────
 \begin{figure}[H]
   \centering
-  \fbox{\parbox[c][5cm][c]{0.70\linewidth}{\centering
-    \textit{[Insert Burn Rate distribution histogram here]}\\[6pt]
-    Source: \texttt{notebooks/training.ipynb}\\[4pt]
-    Shows distribution of burn rate values in the dataset
-  }}
+  \includegraphics[width=0.75\linewidth]{09-burn-rate-distribution.png}
   \caption{Distribution of Burn Rate values in the training dataset.}
   \label{fig:burn-rate-distribution}
 \end{figure}
 
-% ── IMAGE PLACEHOLDER ──────────────────────────────────────────────────────
-% IMAGE: Pearson correlation heatmap
-% Source: training.ipynb cell showing the 4x4 correlation matrix
-% Content: Heatmap with Designation, Resource Allocation,
-%   Mental Fatigue Score, and Burn Rate. Mental Fatigue Score
-%   should show the strongest positive correlation with Burn Rate
-% ───────────────────────────────────────────────────────────────────────────
 \begin{figure}[H]
   \centering
-  \fbox{\parbox[c][5cm][c]{0.70\linewidth}{\centering
-    \textit{[Insert correlation heatmap here]}\\[6pt]
-    Source: \texttt{notebooks/training.ipynb}\\[4pt]
-    4$\times$4 Pearson correlation matrix of features and target
-  }}
+  \includegraphics[width=0.75\linewidth]{10-correlation-heatmap.png}
   \caption{Pearson correlation heatmap of features and Burn Rate.}
   \label{fig:correlation-heatmap}
 \end{figure}
 
-% ── IMAGE PLACEHOLDER ──────────────────────────────────────────────────────
-% IMAGE: Actual vs Predicted scatter plots (both models side by side)
-% Source: training.ipynb cells showing predicted vs actual for LR and RF
-% Content: Two scatter plots side by side:
-%   Left: Linear Regression (more scatter, wider spread from diagonal)
-%   Right: Random Forest (tighter clustering around the 45-degree line)
-%   Both have a red 45-degree reference line (perfect prediction)
-% ───────────────────────────────────────────────────────────────────────────
 \begin{figure}[H]
   \centering
-  \fbox{\parbox[c][5cm][c]{0.85\linewidth}{\centering
-    \textit{[Insert Actual vs Predicted scatter plots here]}\\[6pt]
-    Source: \texttt{notebooks/training.ipynb}\\[4pt]
-    Left: Linear Regression \quad Right: Random Forest\\[4pt]
-    Red diagonal line = perfect prediction
-  }}
+  \includegraphics[width=0.90\linewidth]{11-actual-vs-predicted.png}
   \caption{Actual vs.\ predicted burn rate for both models.}
   \label{fig:actual-vs-predicted}
 \end{figure}
 
-% ── IMAGE PLACEHOLDER ──────────────────────────────────────────────────────
-% IMAGE: Residual analysis plots
-% Source: training.ipynb cells showing residuals vs predicted values
-%   and residual distribution histogram for the Random Forest model
-% Content: Two plots:
-%   Left: Scatter of residuals vs predicted values (should be random,
-%     centered around 0, no systematic pattern)
-%   Right: Histogram of residuals (should be approximately normal,
-%     centered around 0)
-% ───────────────────────────────────────────────────────────────────────────
 \begin{figure}[H]
   \centering
-  \fbox{\parbox[c][5cm][c]{0.85\linewidth}{\centering
-    \textit{[Insert residual analysis plots here]}\\[6pt]
-    Source: \texttt{notebooks/training.ipynb}\\[4pt]
-    Left: Residuals vs.\ predicted values\\
-    Right: Residual distribution histogram
-  }}
+  \includegraphics[width=0.90\linewidth]{12-residual-analysis.png}
   \caption{Residual analysis for the Random Forest model.}
   \label{fig:residual-analysis}
 \end{figure}
@@ -1797,40 +1605,16 @@ background, while the right panel contains the form on an ivory surface.
 Forms are managed by react-hook-form with Zod validation schemas, ensuring
 client-side validation before submission.
 
-% ── IMAGE PLACEHOLDER ──────────────────────────────────────────────────────
-% IMAGE: Screenshot of the Login page
-% How to capture: Run the frontend (npm run dev), navigate to /login
-% Content: Split-screen layout
-%   Left: warm parchment background with decorative text/illustration
-%   Right: login form with email and password fields, "Sign In" button,
-%          link to registration page
-% Window size: 1440x900 recommended
-% ───────────────────────────────────────────────────────────────────────────
 \begin{figure}[H]
   \centering
-  \fbox{\parbox[c][5cm][c]{0.85\linewidth}{\centering
-    \textit{[Insert screenshot of Login page here]}\\[6pt]
-    URL: \texttt{/login}\\[4pt]
-    Split-screen: brand panel (left) + login form (right)
-  }}
+  \includegraphics[width=0.95\linewidth]{13-screenshot-login.png}
   \caption{Login page with split-screen layout.}
   \label{fig:screenshot-login}
 \end{figure}
 
-% ── IMAGE PLACEHOLDER ──────────────────────────────────────────────────────
-% IMAGE: Screenshot of the Register page
-% How to capture: Navigate to /register
-% Content: Same split-screen layout as login, but the right panel has
-%   fields for: first name, last name, email, password, gender (select),
-%   date of birth. "Create Account" button.
-% ───────────────────────────────────────────────────────────────────────────
 \begin{figure}[H]
   \centering
-  \fbox{\parbox[c][5cm][c]{0.85\linewidth}{\centering
-    \textit{[Insert screenshot of Register page here]}\\[6pt]
-    URL: \texttt{/register}\\[4pt]
-    Form fields: name, email, password, gender, date of birth
-  }}
+  \includegraphics[width=0.95\linewidth]{14-screenshot-register.png}
   \caption{Registration page.}
   \label{fig:screenshot-register}
 \end{figure}
@@ -1850,22 +1634,9 @@ chart plotting burn rate history over time with reference lines at the
 assessments exist, an empty state with a call-to-action to take the first
 quiz is displayed.
 
-% ── IMAGE PLACEHOLDER ──────────────────────────────────────────────────────
-% IMAGE: Screenshot of Employee Dashboard
-% How to capture: Log in as employee (worker1@factory.com / Test1234!),
-%   make sure at least one assessment exists. Navigate to /dashboard.
-% Content: Shows greeting, profile card, burn rate gauge (semicircle with
-%   needle), section score bar chart, burn rate trend line chart.
-%   If high risk, the "Get Help" panel with resource cards is visible.
-% ───────────────────────────────────────────────────────────────────────────
 \begin{figure}[H]
   \centering
-  \fbox{\parbox[c][6cm][c]{0.85\linewidth}{\centering
-    \textit{[Insert screenshot of Employee Dashboard here]}\\[6pt]
-    URL: \texttt{/dashboard}\\[4pt]
-    Shows: burn rate gauge, section scores bar chart,\\
-    burn rate trend line chart, profile card
-  }}
+  \includegraphics[width=0.95\linewidth]{15-screenshot-employee-dashboard.png}
   \caption{Employee dashboard with burn rate gauge and trend chart.}
   \label{fig:screenshot-employee-dashboard}
 \end{figure}
@@ -1879,23 +1650,9 @@ step. The ``Next'' button is disabled until all questions in the current
 step are answered. On submission, the backend scores the quiz, calls the
 AI service, and redirects the user to the results page.
 
-% ── IMAGE PLACEHOLDER ──────────────────────────────────────────────────────
-% IMAGE: Screenshot of CBI Assessment page (Step 1)
-% How to capture: Log in as employee, navigate to /assessment.
-%   Answer a few questions to show the radio card selection style.
-% Content: Step 1 of 2 progress indicator at top, questions listed
-%   with large clickable radio cards, "Next" button at bottom.
-%   Show at least one question with a selected answer to demonstrate
-%   the UI interaction pattern.
-% ───────────────────────────────────────────────────────────────────────────
 \begin{figure}[H]
   \centering
-  \fbox{\parbox[c][6cm][c]{0.85\linewidth}{\centering
-    \textit{[Insert screenshot of Assessment page (Step 1) here]}\\[6pt]
-    URL: \texttt{/assessment}\\[4pt]
-    Shows: progress bar, CBI questions with radio card options,\\
-    ``Next'' button
-  }}
+  \includegraphics[width=0.95\linewidth]{16-screenshot-assessment.png}
   \caption{CBI assessment page --- Step 1: Personal Burnout.}
   \label{fig:screenshot-assessment}
 \end{figure}
@@ -1906,19 +1663,9 @@ score cards (personal burnout, work-related burnout, mental fatigue), and
 support resource cards filtered by the employee's current risk level.
 Action buttons allow retaking the assessment or viewing history.
 
-% ── IMAGE PLACEHOLDER ──────────────────────────────────────────────────────
-% IMAGE: Screenshot of Results page
-% How to capture: Complete an assessment, observe redirect to /results
-%   or navigate to /results directly.
-% Content: Large gauge, three score cards, help resource cards below
-% ───────────────────────────────────────────────────────────────────────────
 \begin{figure}[H]
   \centering
-  \fbox{\parbox[c][5cm][c]{0.85\linewidth}{\centering
-    \textit{[Insert screenshot of Results page here]}\\[6pt]
-    URL: \texttt{/results}\\[4pt]
-    Shows: burn rate gauge, score cards, support resources
-  }}
+  \includegraphics[width=0.95\linewidth]{17-screenshot-results.png}
   \caption{Assessment results page with score cards and support resources.}
   \label{fig:screenshot-results}
 \end{figure}
@@ -1928,20 +1675,9 @@ submissions with date, personal burnout average, work burnout average, and
 quiz version. Each row is expandable to reveal the 13 individual responses
 with labels and values; reverse-scored answers are annotated.
 
-% ── IMAGE PLACEHOLDER ──────────────────────────────────────────────────────
-% IMAGE: Screenshot of History page
-% How to capture: Navigate to /history. Expand one row to show the
-%   detailed responses.
-% Content: Paginated table of past assessments. One row expanded showing
-%   the 13 individual question responses with values.
-% ───────────────────────────────────────────────────────────────────────────
 \begin{figure}[H]
   \centering
-  \fbox{\parbox[c][5cm][c]{0.85\linewidth}{\centering
-    \textit{[Insert screenshot of History page here]}\\[6pt]
-    URL: \texttt{/history}\\[4pt]
-    Shows: paginated submission table with expandable rows
-  }}
+  \includegraphics[width=0.95\linewidth]{18-screenshot-history.png}
   \caption{Quiz submission history with expandable response detail.}
   \label{fig:screenshot-history}
 \end{figure}
@@ -1957,22 +1693,9 @@ average burn rate, high-risk count), a risk distribution donut chart, a
 department heatmap with clickable tiles coloured by average burn rate, a
 department KPI bar chart, and the five most recent alerts.
 
-% ── IMAGE PLACEHOLDER ──────────────────────────────────────────────────────
-% IMAGE: Screenshot of Admin Dashboard
-% How to capture: Log in as admin (admin@factory.com / ChangeMe!2026),
-%   navigate to /admin/dashboard. Ensure there is seeded data.
-% Content: KPI strip at top (4 stat cards), risk distribution donut chart,
-%   department heatmap (coloured tiles), department KPI bar chart,
-%   recent alerts list at bottom.
-% ───────────────────────────────────────────────────────────────────────────
 \begin{figure}[H]
   \centering
-  \fbox{\parbox[c][6cm][c]{0.85\linewidth}{\centering
-    \textit{[Insert screenshot of Admin Dashboard here]}\\[6pt]
-    URL: \texttt{/admin/dashboard}\\[4pt]
-    Shows: KPI strip, risk donut, department heatmap,\\
-    department KPI chart, recent alerts
-  }}
+  \includegraphics[width=0.95\linewidth]{19-screenshot-admin-dashboard.png}
   \caption{Admin command centre dashboard.}
   \label{fig:screenshot-admin-dashboard}
 \end{figure}
@@ -1984,43 +1707,16 @@ tab presents scatter plots, monthly burn rate trends, designation and shift
 breakdowns, risk distribution, KPI trends, and KPI-vs-burn-rate
 comparison charts.
 
-% ── IMAGE PLACEHOLDER ──────────────────────────────────────────────────────
-% IMAGE: Screenshot of Department Detail - Employees tab
-% How to capture: Click a department tile on the admin dashboard, or
-%   navigate to /admin/departments/1. Stay on the Employees tab.
-% Content: Tab bar (Employees | Analytics), filter bar with dropdowns
-%   (risk level, shift type, designation), sortable table with columns:
-%   Worker ID, Designation, Shift, Burn Rate, Risk, Last Assessment, Total.
-%   Pagination controls at bottom.
-% ───────────────────────────────────────────────────────────────────────────
 \begin{figure}[H]
   \centering
-  \fbox{\parbox[c][5cm][c]{0.85\linewidth}{\centering
-    \textit{[Insert screenshot of Department Detail -- Employees tab here]}\\[6pt]
-    URL: \texttt{/admin/departments/[id]}\\[4pt]
-    Shows: filter bar, sortable employee table, pagination
-  }}
+  \includegraphics[width=0.95\linewidth]{20-screenshot-dept-employees.png}
   \caption{Department detail --- Employees tab with filters and sorting.}
   \label{fig:screenshot-dept-employees}
 \end{figure}
 
-% ── IMAGE PLACEHOLDER ──────────────────────────────────────────────────────
-% IMAGE: Screenshot of Department Detail - Analytics tab
-% How to capture: Same URL, click the "Analytics" tab.
-% Content: Summary stat cards at top, scatter plot of employee burn rates,
-%   monthly burn rate area chart, designation bar chart, shift bar chart,
-%   risk distribution donut, KPI line chart, KPI vs burn rate dual-axis chart.
-%   You may need to scroll to capture all charts. Consider taking two
-%   screenshots: one of the top half and one of the bottom half.
-% ───────────────────────────────────────────────────────────────────────────
 \begin{figure}[H]
   \centering
-  \fbox{\parbox[c][5cm][c]{0.85\linewidth}{\centering
-    \textit{[Insert screenshot of Department Detail -- Analytics tab here]}\\[6pt]
-    URL: \texttt{/admin/departments/[id]} (Analytics tab)\\[4pt]
-    Shows: scatter plot, monthly trend, designation/shift breakdowns,\\
-    KPI charts
-  }}
+  \includegraphics[width=0.95\linewidth]{21-screenshot-dept-analytics.png}
   \caption{Department detail --- Analytics tab with burnout and KPI visualisations.}
   \label{fig:screenshot-dept-analytics}
 \end{figure}
@@ -2030,20 +1726,9 @@ view for a single anonymised employee showing their burn rate gauge, burn
 rate trend line chart, section score comparison, profile summary, monthly
 KPI performance chart, and a dual-axis burn rate vs.\ KPI comparison chart.
 
-% ── IMAGE PLACEHOLDER ──────────────────────────────────────────────────────
-% IMAGE: Screenshot of Employee Detail page
-% How to capture: Navigate to /admin/employees, click a worker row,
-%   or go directly to /admin/employees/[userId].
-% Content: Burn rate gauge, trend chart, section scores bar chart,
-%   profile info card, KPI multi-line chart, KPI vs burn rate dual-axis chart.
-% ───────────────────────────────────────────────────────────────────────────
 \begin{figure}[H]
   \centering
-  \fbox{\parbox[c][5cm][c]{0.85\linewidth}{\centering
-    \textit{[Insert screenshot of Employee Detail page here]}\\[6pt]
-    URL: \texttt{/admin/employees/[id]}\\[4pt]
-    Shows: gauge, trend, section scores, KPI charts
-  }}
+  \includegraphics[width=0.95\linewidth]{22-screenshot-employee-detail.png}
   \caption{Admin employee detail with burnout and KPI analysis.}
   \label{fig:screenshot-employee-detail}
 \end{figure}
@@ -2054,21 +1739,9 @@ department, message, date, and read status, and ``Mark read'' / ``Mark all
 read'' actions. Mutations use TanStack Query cache invalidation for instant
 UI updates.
 
-% ── IMAGE PLACEHOLDER ──────────────────────────────────────────────────────
-% IMAGE: Screenshot of Alerts page
-% How to capture: Navigate to /admin/alerts. Ensure there are some
-%   unread alerts in the system.
-% Content: Filter dropdowns (read status, alert type), alert table with
-%   type badges (critical_risk, high_risk, trend_spike), messages,
-%   dates, and "Mark read" buttons.
-% ───────────────────────────────────────────────────────────────────────────
 \begin{figure}[H]
   \centering
-  \fbox{\parbox[c][5cm][c]{0.85\linewidth}{\centering
-    \textit{[Insert screenshot of Alerts page here]}\\[6pt]
-    URL: \texttt{/admin/alerts}\\[4pt]
-    Shows: filter dropdowns, alert table with type badges
-  }}
+  \includegraphics[width=0.95\linewidth]{23-screenshot-alerts.png}
   \caption{Admin alerts inbox with filtering.}
   \label{fig:screenshot-alerts}
 \end{figure}
@@ -2079,21 +1752,9 @@ minimum risk level badge, active status, and URL. A modal form (validated
 with Zod) handles creation and editing. Delete requires confirmation.
 Toast notifications confirm successful operations.
 
-% ── IMAGE PLACEHOLDER ──────────────────────────────────────────────────────
-% IMAGE: Screenshot of Resource Management page
-% How to capture: Navigate to /admin/resources. Optionally open the
-%   create/edit modal to show the form.
-% Content: Resource table and/or the modal form for creating/editing a
-%   resource (title, description, URL, min risk level dropdown,
-%   active toggle).
-% ───────────────────────────────────────────────────────────────────────────
 \begin{figure}[H]
   \centering
-  \fbox{\parbox[c][5cm][c]{0.85\linewidth}{\centering
-    \textit{[Insert screenshot of Resource Management page here]}\\[6pt]
-    URL: \texttt{/admin/resources}\\[4pt]
-    Shows: resource table and/or create/edit modal form
-  }}
+  \includegraphics[width=0.95\linewidth]{24-screenshot-resources.png}
   \caption{Help resource management with CRUD operations.}
   \label{fig:screenshot-resources}
 \end{figure}
@@ -2565,7 +2226,8 @@ The following directions are proposed for future development:
 \bibitem{who2019}
 World Health Organization, ``Burn-out an `occupational phenomenon':
 International Classification of Diseases,'' WHO, May 2019. [Online].
-Available: \url{https://www.who.int/news/item/28-05-2019-burn-out-an-occupational-phenomenon-international-classification-of-diseases}
+Available:
+\url{https://www.who.int/news/item/28-05-2019-burn-out-an-occupational-phenomenon-international-classification-of-diseases}
 
 \bibitem{maslach2001}
 C.~Maslach, W.~B.~Schaufeli, and M.~P.~Leiter, ``Job burnout,''
