@@ -239,6 +239,104 @@ Role-based access:
 
 ---
 
+## Application Route Structure and Navigation Flow
+
+```
+/                              Landing page (unauthenticated)
+│
+├── /login                     Employee & Admin login
+├── /register                  New employee registration
+│
+├── (employee)                 ── Sidebar: "Employee Portal" ──
+│   ├── /dashboard             Employee dashboard
+│   │                          • Risk level indicator
+│   │                          • Burn rate trend chart
+│   │                          • Section score breakdown
+│   │                          • "Get Help" panel (if risk ≥ high)
+│   │
+│   ├── /assessment            Take the CBI burnout quiz
+│   │       │                  • 13-question form
+│   │       └──► /results      Assessment result after submission
+│   │                          • Burn rate, risk level
+│   │                          • Personal vs. work-related scores
+│   │
+│   └── /history               Past assessment history
+│                              • List of previous submissions
+│                              • Score trends over time
+│
+└── /admin                     ── Sidebar: "Admin Portal" ──
+    ├── /admin/dashboard       HR command center
+    │                          • Department heatmap
+    │                          • Company-wide risk distribution chart
+    │                          • High-risk alerts table
+    │
+    ├── /admin/employees       Employee directory
+    │   └── /admin/employees/[id]
+    │                          Employee detail view
+    │                          • HR profile, assessment history
+    │
+    ├── /admin/alerts          Alert management
+    │                          • high_risk / critical_risk / trend_spike
+    │                          • Filterable alert list
+    │
+    ├── /admin/resources       Help resources management
+    │                          • CRUD for curated resources
+    │
+    └── /admin/departments/[id]
+                               Department drill-down
+                               • Employee list with risk levels
+                               • Department-level stats
+```
+
+### Route Protection
+
+```
+                    ┌─────────────────────┐
+                    │    User visits URL   │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │   Has valid JWT?     │
+                    └──────┬──────┬───────┘
+                       No  │      │ Yes
+                           ▼      ▼
+                    ┌──────────┐  ┌───────────────────┐
+                    │ Redirect │  │ Check user role    │
+                    │ → /login │  └──────┬──────┬──────┘
+                    └──────────┘  employee│      │admin
+                                         ▼      ▼
+                             ┌──────────────┐  ┌──────────────┐
+                             │ (employee)/* │  │  /admin/*    │
+                             │   routes     │  │   routes     │
+                             └──────────────┘  └──────────────┘
+                                  ×                   ×
+                            Cannot access        Cannot access
+                            /admin/* routes     (employee) routes
+```
+
+### Navigation Sidebar Items
+
+**Employee Portal**
+
+| Icon             | Label           | Route        |
+|------------------|-----------------|--------------|
+| LayoutDashboard  | Dashboard       | `/dashboard` |
+| ClipboardList    | Take Assessment | `/assessment`|
+| Activity         | Results         | `/results`   |
+| History          | History         | `/history`   |
+
+**Admin Portal**
+
+| Icon             | Label      | Route              |
+|------------------|------------|--------------------|
+| LayoutDashboard  | Dashboard  | `/admin/dashboard` |
+| Users            | Employees  | `/admin/employees` |
+| AlertTriangle    | Alerts     | `/admin/alerts`    |
+| BookOpen         | Resources  | `/admin/resources` |
+
+---
+
 ## Database Interaction Summary
 
 | Action                  | MySQL                        | MongoDB                    |
