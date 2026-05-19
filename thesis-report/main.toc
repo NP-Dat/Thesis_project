@@ -1,0 +1,83 @@
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Background}{1}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Motivating Scenario and Use Cases}{2}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Problem Statement}{3}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Scope and Objectives}{4}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Research Questions}{5}{subsection.1.5}%
+\contentsline {subsection}{\numberline {1.6}Assumptions and Proposed Solution}{5}{subsection.1.6}%
+\contentsline {subsection}{\numberline {1.7}Thesis Structure}{6}{subsection.1.7}%
+\contentsline {section}{\numberline {2}Literature Review}{9}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Occupational Burnout}{9}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Definition and Impact on the Industrial Workforce}{9}{subsubsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.2}Burnout Measurement Instruments}{10}{subsubsection.2.1.2}%
+\contentsline {subsubsection}{\numberline {2.1.3}The Copenhagen Burnout Inventory in This Thesis}{10}{subsubsection.2.1.3}%
+\contentsline {subsection}{\numberline {2.2}Machine Learning for Health Prediction}{11}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Supervised Regression}{11}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Linear Regression}{11}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Random Forest Regression}{12}{subsubsection.2.2.3}%
+\contentsline {subsubsection}{\numberline {2.2.4}Model Evaluation Metrics}{13}{subsubsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.3}Web Application Architectures}{14}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}Microservices vs.\ Monolithic Architecture}{14}{subsubsection.2.3.1}%
+\contentsline {subsubsection}{\numberline {2.3.2}RESTful API Design}{14}{subsubsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.4}Related Technologies}{15}{subsection.2.4}%
+\contentsline {subsubsection}{\numberline {2.4.1}React and Next.js for Frontend Development}{15}{subsubsection.2.4.1}%
+\contentsline {subsubsection}{\numberline {2.4.2}Node.js and Express for Backend Services}{15}{subsubsection.2.4.2}%
+\contentsline {subsubsection}{\numberline {2.4.3}FastAPI for Machine Learning Serving}{16}{subsubsection.2.4.3}%
+\contentsline {subsection}{\numberline {2.5}Related Work}{16}{subsection.2.5}%
+\contentsline {section}{\numberline {3}Methodology and System Design}{18}{section.3}%
+\contentsline {subsection}{\numberline {3.1}System Architecture Overview}{18}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Database Design}{19}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}MySQL Schema}{19}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}MongoDB Collections}{20}{subsubsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.3}Backend Design}{21}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Layered Architecture}{21}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Authentication and Authorisation}{23}{subsubsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.3}Quiz Scoring Pipeline}{23}{subsubsection.3.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.4}Alert Rules}{24}{subsubsection.3.3.4}%
+\contentsline {subsection}{\numberline {3.4}AI Microservice Design}{25}{subsection.3.4}%
+\contentsline {subsubsection}{\numberline {3.4.1}Dataset Description}{25}{subsubsection.3.4.1}%
+\contentsline {subsubsection}{\numberline {3.4.2}Feature Selection Justification}{26}{subsubsection.3.4.2}%
+\contentsline {subsubsection}{\numberline {3.4.3}Data Preprocessing}{26}{subsubsection.3.4.3}%
+\contentsline {subsubsection}{\numberline {3.4.4}Model Selection}{27}{subsubsection.3.4.4}%
+\contentsline {subsubsection}{\numberline {3.4.5}FastAPI Service Architecture}{27}{subsubsection.3.4.5}%
+\contentsline {subsection}{\numberline {3.5}Frontend Design}{28}{subsection.3.5}%
+\contentsline {subsubsection}{\numberline {3.5.1}Technology Stack and Design Decisions}{28}{subsubsection.3.5.1}%
+\contentsline {subsubsection}{\numberline {3.5.2}Route Structure and Navigation}{29}{subsubsection.3.5.2}%
+\contentsline {subsubsection}{\numberline {3.5.3}Design System}{30}{subsubsection.3.5.3}%
+\contentsline {subsubsection}{\numberline {3.5.4}Data Flow Pattern}{31}{subsubsection.3.5.4}%
+\contentsline {section}{\numberline {4}Implementation and Results}{33}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Development Environment}{33}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Backend Implementation}{33}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1}Project Structure and Configuration}{33}{subsubsection.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.2}Authentication Flow Implementation}{34}{subsubsection.4.2.2}%
+\contentsline {subsubsection}{\numberline {4.2.3}Quiz Scoring Implementation}{35}{subsubsection.4.2.3}%
+\contentsline {subsubsection}{\numberline {4.2.4}Dashboard Aggregation}{35}{subsubsection.4.2.4}%
+\contentsline {subsubsection}{\numberline {4.2.5}Alert System Implementation}{36}{subsubsection.4.2.5}%
+\contentsline {subsubsection}{\numberline {4.2.6}API Endpoint Summary}{36}{subsubsection.4.2.6}%
+\contentsline {subsection}{\numberline {4.3}AI Service Implementation}{37}{subsection.4.3}%
+\contentsline {subsubsection}{\numberline {4.3.1}Model Training Results}{37}{subsubsection.4.3.1}%
+\contentsline {subsubsection}{\numberline {4.3.2}FastAPI Prediction Endpoint}{40}{subsubsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.3}Integration with Express Backend}{41}{subsubsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.4}Frontend Implementation}{41}{subsection.4.4}%
+\contentsline {subsubsection}{\numberline {4.4.1}Authentication Pages}{41}{subsubsection.4.4.1}%
+\contentsline {subsubsection}{\numberline {4.4.2}Employee Portal}{42}{subsubsection.4.4.2}%
+\contentsline {subsubsection}{\numberline {4.4.3}Admin Portal}{46}{subsubsection.4.4.3}%
+\contentsline {subsubsection}{\numberline {4.4.4}Reusable UI Components}{51}{subsubsection.4.4.4}%
+\contentsline {subsubsection}{\numberline {4.4.5}State Management with TanStack Query}{51}{subsubsection.4.4.5}%
+\contentsline {section}{\numberline {5}Discussion and Evaluation}{53}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Model Performance Analysis}{53}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Functional Testing}{54}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}System Feature Evaluation}{56}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Answering the Research Questions}{57}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Comparison with Related Work}{58}{subsection.5.5}%
+\contentsline {section}{\numberline {6}Conclusion and Future Work}{59}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Conclusion}{59}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Contributions}{60}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Achievement of Objectives}{60}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Limitations}{61}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.5}Future Work}{62}{subsection.6.5}%
+\contentsline {section}{List of References}{64}{subsection.6.5}%
+\contentsline {section}{Appendices}{68}{subsection.6.5}%
+\contentsline {subsection}{Appendix A: Complete API Reference}{68}{section*.31}%
+\contentsline {subsection}{Appendix B: Database Schema}{71}{table.9}%
+\contentsline {subsection}{Appendix C: CBI Questionnaire}{77}{table.9}%

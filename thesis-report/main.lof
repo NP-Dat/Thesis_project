@@ -1,0 +1,24 @@
+\contentsline {figure}{\numberline {1}{\ignorespaces Structure of the thesis.}}{8}{figure.caption.1}%
+\contentsline {figure}{\numberline {2}{\ignorespaces High-level system architecture.}}{18}{figure.caption.3}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Entity-relationship diagram of the MySQL database.}}{19}{figure.caption.4}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Layered architecture of the Express backend.}}{22}{figure.caption.5}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Submitting Quiz results pipeline.}}{24}{figure.caption.6}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Architecture of the FastAPI(Python) AI microservice.}}{28}{figure.caption.8}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Application route structure and navigation flow.}}{30}{figure.caption.9}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Random Forest feature importance scores.}}{38}{figure.caption.14}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Distribution of Burn Rate values in the training dataset.}}{39}{figure.caption.15}%
+\contentsline {figure}{\numberline {10}{\ignorespaces Pearson correlation heatmap of features and Burn Rate.}}{39}{figure.caption.16}%
+\contentsline {figure}{\numberline {11}{\ignorespaces Actual vs.\ predicted burn rate for both models.}}{40}{figure.caption.17}%
+\contentsline {figure}{\numberline {12}{\ignorespaces Residual analysis for the Random Forest model.}}{40}{figure.caption.18}%
+\contentsline {figure}{\numberline {13}{\ignorespaces Login page.}}{42}{figure.caption.19}%
+\contentsline {figure}{\numberline {14}{\ignorespaces Registration page.}}{42}{figure.caption.20}%
+\contentsline {figure}{\numberline {15}{\ignorespaces Employee dashboard with burn rate gauge and trend chart.}}{43}{figure.caption.21}%
+\contentsline {figure}{\numberline {16}{\ignorespaces CBI assessment page - Step 1: Personal Burnout.}}{44}{figure.caption.22}%
+\contentsline {figure}{\numberline {17}{\ignorespaces Assessment results page with score cards and support resources.}}{45}{figure.caption.23}%
+\contentsline {figure}{\numberline {18}{\ignorespaces Quiz submission history with expandable response detail.}}{46}{figure.caption.24}%
+\contentsline {figure}{\numberline {19}{\ignorespaces Admin command centre dashboard.}}{47}{figure.caption.25}%
+\contentsline {figure}{\numberline {20}{\ignorespaces Department detail - Employees tab with filters and sorting.}}{48}{figure.caption.26}%
+\contentsline {figure}{\numberline {21}{\ignorespaces Department detail - Analytics tab with burnout and KPI visualisations.}}{48}{figure.caption.27}%
+\contentsline {figure}{\numberline {22}{\ignorespaces Admin employee detail with burnout and KPI analysis.}}{49}{figure.caption.28}%
+\contentsline {figure}{\numberline {23}{\ignorespaces Admin alerts inbox with filtering.}}{50}{figure.caption.29}%
+\contentsline {figure}{\numberline {24}{\ignorespaces Help resource management with CRUD operations.}}{50}{figure.caption.30}%

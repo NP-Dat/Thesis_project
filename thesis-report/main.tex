@@ -223,15 +223,15 @@
 
 \vspace{1cm}
 
-First of all, I want to say a big thank you to my supervisor, \textbf{Dang Tam Nhan}, for always being there to guide me, give feedback, and encourage me throughout this thesis. Your knowledge in AI and software engineering really helped shape the direction for this work, and your patience with every revision made this thesis finished.
+I am grateful to my supervisor, \textbf{Dang Tam Nhan}, for his guidance, feedback, and encouragement throughout this thesis. His expertise in AI and software engineering helped shape the direction of the work, and his patience during every revision cycle was invaluable.
 
-I also want to thank the faculty at the \textbf{School of Computer Science and Engineering}, \textbf{International University -- Vietnam National University Ho Chi Minh City}, for creating an academic environment that pushed me to do independent research and think critically. Everything I learned during my undergraduate years became the base for this project.
+I would also like to thank the faculty of the \textbf{School of Computer Science and Engineering}, \textbf{International University -- Vietnam National University Ho Chi Minh City}, for providing an academic environment that demanded independent research and critical thinking. The foundations laid during my undergraduate studies made this project possible.
 
-I would like to thank my classmates and friends too, for all the discussions, late-night study sessions, and support we gave each other. Special thanks to \textbf{Tran Luu Hong Phuong} and \textbf{Luong Quang Huy}, whose feedback on the early prototype helped me spot usability problems and architectural issues that I would have missed on my own.
+Thanks are due to my classmates and friends for discussions and support throughout the process. In particular, \textbf{Tran Luu Hong Phuong} and \textbf{Luong Quang Huy} provided early feedback that surfaced usability problems and architectural issues I might otherwise have missed.
 
-I am really thankful to my family for their endless love and encouragement during my studies. Their sacrifices and constant belief in me gave me the strength to keep going even when this project got really tough sometimes.
+I am deeply thankful to my family for their support and encouragement during my studies. Their belief in me sustained the effort required to see this project through.
 
-Finally, I want to acknowledge the open-source community and the developers behind the tools and frameworks I used in this thesis, including \textbf{React}, \textbf{Next.js}, \textbf{Node.js}, \textbf{Express}, \textbf{FastAPI}, and \textbf{scikit-learn}. Without them, building a system like this would have been barely possible.
+Finally, I acknowledge the open-source community and the developers behind the frameworks used in this thesis, including \textbf{React}, \textbf{Next.js}, \textbf{Node.js}, \textbf{Express}, \textbf{FastAPI}, and \textbf{scikit-learn}, without which a system of this scope would not have been practical.
 
 \vspace{0.6cm}
 
@@ -270,15 +270,15 @@ Finally, I want to acknowledge the open-source community and the developers behi
 
 \vspace{1cm}
 
-Occupational burnout is becoming a serious problem in industrial workplaces. Workers there often deal with heavy workloads, repetitive tasks, and shift-based schedules that keep putting psychological pressure on them day after day. The usual way to detect burnout is through periodic surveys or manager observation, but these methods are reactive rather than preventive. By the time the symptoms show up, productivity has already dropped and health problems may have already started.
+Occupational burnout imposes measurable costs on industrial workplaces through absenteeism, reduced output, and elevated accident rates. Conventional detection methods rely on periodic surveys or supervisor observation, both of which are inherently reactive: by the time burnout becomes visible, its organisational impact has already accumulated.
 
-This thesis presents the design and implementation of an intelligent web-based framework for early detection of employee burnout in industrial settings. The system uses a validated psychometric tool, the \textbf{Copenhagen Burnout Inventory (CBI)}, combined with a \textbf{Random Forest} regression model to predict a continuous burnout score from three features: employee designation, resource allocation, and a mental fatigue score derived from the CBI quiz responses.
+This thesis presents the design and implementation of an intelligent web-based framework for early burnout detection in industrial settings. The system integrates a validated psychometric instrument, the \textbf{Copenhagen Burnout Inventory (CBI)}, with a \textbf{Random Forest} regression model that predicts a continuous burnout score from three features: employee designation, resource allocation, and a mental fatigue score derived from CBI responses.
 
-The framework is built on a microservice architecture with three main components. A \textbf{React/Next.js} frontend provides two role-based portals: one for employees to do self-assessment, track their trends, and access support resources, and one for admins with department-level heatmaps, risk distribution charts, KPI analytics, and an automated alert inbox. A \textbf{Node.js/Express} backend handles authentication, quiz scoring, risk classification, alert generation, and dashboard aggregation, using \textbf{MySQL} for relational data and \textbf{MongoDB} for the quiz bank and raw submissions. A \textbf{Python/FastAPI} microservice loads the trained model at startup and serves predictions through a RESTful endpoint, keeping the machine learning part separate from the main application backend.
+The framework follows a microservice architecture comprising three components. A \textbf{React/Next.js} frontend provides role-differentiated portals for employees (self-assessment, trend tracking, support resources) and administrators (department heatmaps, risk distribution analytics, KPI correlation charts, automated alert inbox). A \textbf{Node.js/Express} backend manages authentication, quiz scoring, risk classification, alert generation, and dashboard aggregation, backed by \textbf{MySQL} for relational data and \textbf{MongoDB} for the quiz definition and raw submissions. A \textbf{Python/FastAPI} microservice loads the serialised model at startup and exposes a prediction endpoint, maintaining a clean separation between the machine learning component and the application backend.
 
-The Random Forest model was trained on around 22{,}000 records from a public Kaggle dataset. It achieves a coefficient of determination ($R^{2}$) of about 0.90, a mean absolute error (MAE) of about 0.048, and a root mean squared error (RMSE) of about 0.061 on the held-out test set, beating the Linear Regression baseline across all three metrics. Feature importance analysis shows that the mental fatigue score is the strongest predictor, making up nearly 81\% of predictive power of the model.
+The Random Forest model was trained on approximately 22{,}000 records from a public Kaggle dataset. On the held-out test set, it achieves an $R^{2}$ of 0.90, an MAE of 0.048, and an RMSE of 0.061, outperforming the Linear Regression baseline across all three metrics. Feature importance analysis indicates that the mental fatigue score accounts for approximately 81\% of predictive weight, consistent with its role as the primary psychometric input.
 
-There are still some limitations. The HR profile data for designation and resource allocation is simulated (auto-generated), not taken from a real factory system. The model only uses three features, and the evaluation is based on a single public dataset that may not generalize to all industrial domains. No formal usability study was conducted either. In spite of these constraints, the system shows a practical architecture for combining psychometric assessment, machine learning prediction, and organizational analytics into one unified platform for proactive burnout management.
+Several limitations apply. HR profile data for designation and resource allocation are synthetically generated rather than sourced from a real factory system. The model relies on three features and is evaluated against a single public dataset, which constrains generalisability across industries and organisational contexts. No formal usability study was conducted. Within these constraints, the system demonstrates a practical architecture for combining psychometric assessment, machine learning prediction, and organisational analytics into a unified platform for proactive burnout management.
 
 \bigskip
 \noindent\textbf{Keywords:} framework, employee's mental health, employee burnout detection, Copenhagen Burnout Inventory, Random Forest regression, Linear regression, microservice architecture, industrial workforce, web-based health monitoring.
@@ -294,39 +294,39 @@ There are still some limitations. The HR profile data for designation and resour
 
 \subsection{Background}
 
-The industrial workforce works under conditions that make occupational burnout very likely. Factory employees regularly deal with physically demanding tasks, strict shift schedules, production quotas, and very little control over their working conditions. The World Health Organization recognised burnout as an occupational phenomenon in the eleventh revision of the International Classification of Diseases (ICD-11), defining it as a syndrome caused by chronic workplace stress that has not been successfully managed~\cite{who2019}. The three main signs of burnout: emotional exhaustion, depersonalization, and reduced personal accomplishment; show up in measurable ways: decreased productivity, more absence, higher turnover rates, and increased healthcare costs~\cite{maslach2001}.
+Industrial workers operate under conditions that make occupational burnout particularly prevalent. Factory environments routinely combine physically demanding tasks, rigid shift schedules, production quotas, and limited autonomy. The World Health Organisation recognised burnout as an occupational phenomenon in the eleventh revision of the International Classification of Diseases (ICD-11), defining it as a syndrome resulting from chronic workplace stress that has not been successfully managed~\cite{who2019}. Its three characteristic dimensions, emotional exhaustion, depersonalisation, and reduced personal accomplishment, manifest in measurable organisational outcomes: declining productivity, increased absenteeism, elevated turnover, and higher healthcare costs~\cite{maslach2001}.
 
-Global estimates say that stress-related conditions, including burnout, cost companies and corporations hundreds of billions of dollars every year through lost productivity and medical expenses~\cite{gallup2024}. In manufacturing and industrial sectors, the consequences go beyond individual well-being: tired workers are more likely to cause safety incidents, quality defects, and equipment damage. Despite these risks, most organizations still depend on ad-hoc observation and infrequent surveys to check employee mental health, an approach that is reactive rather than preventive.
+Stress-related conditions, including burnout, are estimated to cost organisations hundreds of billions of dollars annually in lost productivity and medical expenses~\cite{gallup2024}. In manufacturing and industrial sectors the consequences extend beyond individual welfare: fatigued workers are disproportionately associated with safety incidents, quality defects, and equipment damage. Despite these risks, most organisations still rely on ad-hoc supervisor observation and infrequent surveys to assess employee mental health, an approach that is inherently reactive rather than preventive.
 
-Advances in machine learning (ML) and web technologies have opened up a chance to move burnout management from reactive response to proactive detection. By combining validated psychometric instruments with predictive models and real-time dashboards, it is now possible to build systems that continuously assess burnout risk at both the individual and organisational level. These systems can alert management to emerging problems before they become worse, while also giving employees self-monitoring tools and timely access to support resources.
+Advances in machine learning and web development have created practical opportunities to shift burnout management toward proactive, continuous monitoring. By pairing validated psychometric instruments with predictive models and real-time dashboards, it is feasible to build systems that estimate burnout risk at both the individual and organisational level, alerting management before problems escalate while also equipping employees with self-monitoring tools.
 
 \subsection{Motivating Scenario and Use Cases}
 
-Consider a mid-sized manufacturing plant with 200 workers across 6 departments, running rotating day and night shifts. The HR team there has only three staff members, and they have to handle attendance, grievances, and benefits all at once. Right now, if they want to spot a worker at risk of burnout, they have to wait for a supervisor to notice visible signs like chronic fatigue, irritability, or decreased output, then report it to HR. By the time that happens, the worker may have already gone through weeks or months of worsening mental health, and the department may have already suffered measurable productivity losses.
+Consider a mid-sized manufacturing plant with 200 workers across six departments operating rotating day and night shifts. With three HR staff managing attendance, grievances, and benefits concurrently, proactive mental health monitoring is not feasible under current practice. Burnout is only surfaced when a supervisor notices persistent signs such as chronic fatigue or declining output and escalates to HR. At that point, weeks or months of deteriorating mental health have already passed and the department has likely absorbed measurable productivity losses.
 
-This thesis proposes a system that turns this reactive workflow into a proactive one. Two main use cases drive the design:
+The system proposed in this thesis replaces this reactive workflow with a continuous, data-driven one. Two use cases drive the design:
 
 \begin{enumerate}
-  \item \textbf{Employee self-assessment and trend tracking.} Each worker periodically fills out a short 13-question burnout quiz on a web-based portal. The system right away calculates a predicted burn rate using a machine learning model and returns the result through an easy-to-read gauge visualization. Historical trends are displayed as line charts, so the worker can see how their burnout risk changes over time. If the predicted risk is high or critical, the system brings up curated mental health resources directly on the results page.
+  \item \textbf{Employee self-assessment and trend tracking.} Each worker periodically completes a 13-question burnout assessment through a web portal. The system immediately scores the quiz, invokes the ML prediction endpoint, and displays the predicted burn rate as a gauge visualization. Historical results are plotted as trend charts, allowing the worker to monitor changes over time. When risk is classified as high or critical, curated mental health resources are surfaced on the results page.
 
-  \item \textbf{HR department-level monitoring and alerts.} The admin portal gathers assessment data across the whole workforce. A department heatmap shows average burn rates by organizational unit, letting HR quickly see which departments are under the most strain. Automated alerts notify HR when a worker's burn rate crosses a critical threshold or jumps sharply between consecutive assessments. Drill-down views reveal anonymized employee-level detail, keeping privacy intact while still enabling targeted intervention.
+  \item \textbf{HR department-level monitoring and alerts.} The admin portal aggregates assessment data across the workforce. A department heatmap visualises average burn rates by organisational unit, enabling HR to identify high-stress areas. Automated alerts are generated when an individual's burn rate exceeds a critical threshold or increases sharply between consecutive assessments. Drill-down views present anonymised employee-level detail, balancing privacy with the need for targeted intervention.
 \end{enumerate}
 
 \subsection{Problem Statement}
 
-Even though it is well-known that burnout negatively affect industrial productivity and worker welfare, there are still several gaps in how companies handle it:
+Despite the well-documented impact of burnout on industrial productivity and worker welfare, several gaps remain in current organisational practice:
 
 \begin{enumerate}
-  \item \textbf{Detection is reactive.} Most organizations only spot burnout after its effects such as absenteeism, errors, resignations, have already shown up. There is no systematic way to get an early warning.
+  \item \textbf{Detection is reactive.} Most organisations identify burnout only after its symptoms, including absenteeism, errors, and resignations, have already materialised. No systematic early-warning mechanism is in place.
 
-  \item \textbf{Psychometric data is underutilized.} Validated burnout tools like the Copenhagen Burnout Inventory (CBI) exist and are freely available, yet they are rarely built into continuous monitoring workflows. When surveys are done, the results are usually analyzed manually and in isolation.
+  \item \textbf{Psychometric data is underutilised.} Validated instruments such as the Copenhagen Burnout Inventory are freely available, yet they are rarely embedded in continuous monitoring workflows. When surveys are administered, results are typically analysed manually and in isolation rather than fed into an integrated system.
 
-  \item \textbf{No predictive capability.} Traditional approaches only report current symptoms but do not predict future risk. Machine learning can fill this gap by learning patterns from historical data and estimating burn rates from just a few measurable inputs.
+  \item \textbf{No predictive capability.} Traditional approaches report current symptom levels but do not estimate future risk. Machine learning can address this gap by learning patterns from historical data and projecting burn rates from a small set of measurable inputs.
 
-  \item \textbf{No organizational-level visibility.} Individual survey results stay siloed. HR managers do not have aggregated, visual tools such as department heatmaps, risk distribution charts, and trend analyses that would let them make data-driven workforce management decisions.
+  \item \textbf{No organisational-level visibility.} Individual survey results remain isolated. HR managers lack aggregated analytical tools, such as department heatmaps, risk distribution charts, and trend analyses, that would support data-driven workforce management decisions.
 \end{enumerate}
 
-This thesis tackles these gaps by designing and implementing an integrated web-based framework that brings together psychometric assessment, machine learning prediction, and multi-level analytics in a single platform.
+This thesis addresses these gaps through an integrated web-based framework that combines psychometric assessment, machine learning prediction, and multi-level analytics on a single platform.
 
 \subsection{Scope and Objectives}
 
@@ -412,7 +412,7 @@ This thesis is organised into six chapters, as shown in Figure~\ref{fig:thesis-s
 
 \textbf{Chapter~I: Introduction} covers the background, motivating scenario, problem statement, objectives, research questions, and assumptions.
 
-\textbf{Chapter~II: Literature Review} takes a look at the academic foundations of occupational burnout, the Copenhagen Burnout Inventory, machine learning methods for burn out prediction, web application architectures, and related work.
+\textbf{Chapter~II: Literature Review} examines the academic foundations of occupational burnout, the Copenhagen Burnout Inventory, machine learning methods for burnout prediction, web application architectures, and related work.
 
 \textbf{Chapter~III: Methodology and System Design} describes the overall system architecture, database design, backend design, AI microservice methodology, and frontend design decisions.
 
@@ -490,22 +490,9 @@ The \textbf{Copenhagen Burnout Inventory (CBI)}, developed by Kristensen et~al.\
 
 \subsubsection{The Copenhagen Burnout Inventory in This Thesis}
 
-In this thesis, I use the CBI for some reasons. First, the CBI is
-completely free to use, with no licensing restrictions, making it ideal for
-an academic project. Second, the CBI distinguishes between personal and
-work-related burnout, which allows the system to provide more granular
-feedback to both employees and administrators. Third, the CBI's
-straightforward frequency-based response scale maps naturally to a numeric
-score that can be fed into a machine learning model.
+The CBI was selected for this thesis on three grounds. First, it is freely available without licensing restrictions, which makes it appropriate for academic and open-source use where the MBI is not. Second, the instrument's distinction between personal and work-related burnout enables more granular feedback to both employees and administrators. Third, the frequency-based response scale produces a numeric score that integrates naturally with the machine learning pipeline without additional transformation.
 
-Since the target population consists of industrial workers rather than
-client-facing professionals, the client-related burnout subscale is omitted.
-The system uses the remaining 13 questions: six for personal burnout and
-seven for work-related burnout. One question (``Do you have enough energy
-for family and friends during leisure time?'') is reverse-scored, as a
-positive response indicates lower burnout. The section averages are combined
-and normalised to a 0--10 scale to produce the mental fatigue score used as
-input to the machine learning model.
+As the target population consists of industrial workers rather than client-facing professionals, the client-related subscale is omitted. The system uses the remaining 13 questions: six for personal burnout and seven for work-related burnout. One item, ``Do you have enough energy for family and friends during leisure time?'', is reverse-scored because an affirmative response indicates lower burnout. Section averages are combined and normalised to a 0--10 scale to produce the mental fatigue score used as input to the model.
 
 \subsection{Machine Learning for Health Prediction}
 
@@ -524,93 +511,93 @@ employee features to a predicted burn rate for new, unseen employees.
 
 \subsubsection{Linear Regression}
 
-Linear Regression is the most straightforward regression algorithm we can use. It essentially treats the connection between our inputs and our target as a basic straight-line equation:
+Linear Regression models the relationship between inputs and target as a linear combination:
 
 \begin{equation}
   \hat{y} = w_1 x_1 + w_2 x_2 + w_3 x_3 + b
   \label{eq:linear-regression}
 \end{equation}
 
-\noindent where $x_1, x_2,$ and $x_3$ represent the inputs that we are looking at (designation, resource allocation, and mental fatigue score). The terms $w_1, w_2,$ and $w_3$ are the weights the model learns over time, and $b$ is a starting bias. The model figures out the best weights by trying to make the squared differences between its guesses and the real answers as small as possible~\cite{hastie2009}.
+\noindent where $x_1, x_2,$ and $x_3$ are designation, resource allocation, and mental fatigue score, $w_1, w_2, w_3$ are learned weights, and $b$ is the intercept. Parameters are estimated by minimising the sum of squared residuals~\cite{hastie2009}.
 
-I am using Linear Regression as a starting baseline for this thesis because its simplicity gives us a clear performance floor. We can use this basic standard to see whether our more complex models are actually doing any better. Also, its learned weights are really easy to read directly: if we see a big weight on the mental fatigue score, for example, it tells us right away that fatigue is the main thing driving the burn rate.
+Linear Regression serves as the baseline in this thesis because its simplicity establishes a performance floor and its learned coefficients are directly interpretable. A large weight on the mental fatigue score, for example, immediately indicates that fatigue dominates the prediction. The primary limitation is its assumption of linearity, which may not hold when feature interactions are present.
 
 \subsubsection{Random Forest Regression}
 
-Random Forest is a group-based learning method originally created by Breiman~\cite{breiman2001}. Instead of building just one model, it creates a whole collection of decision trees. Each tree learns from a random, mixed-up chunk of the training data and looks at a random handful of features whenever it needs to make a decision split. For the final prediction, it just averages together what all the individual trees guessed.
+Random Forest is an ensemble method introduced by Breiman~\cite{breiman2001} that constructs a collection of decision trees. Each tree is trained on a bootstrap sample of the data, and each split considers a random subset of features. Predictions are obtained by averaging outputs across all trees.
 
-Random Forest offers some great advantages over Linear Regression for this specific problem:
+Random Forest was selected as the primary model for several reasons:
 
 \begin{itemize}
-  \item It can figure out complicated, non-linear relationships and how features naturally interact with each other, meaning I don't have to manually engineer new features.
-  \item It doesn't get messed up by extreme outliers as easily, because the individual trees make decisions at specific thresholds instead of forcing a single, global line through all the points.
-  \item It is perfectly fine with features being on completely different scales. This means that variables like designation (which goes from 1 to 5) and resource allocation (which goes from 1 to 10) do not need to be normalized beforehand.
-  \item It automatically provides built-in feature importance scores, which makes it easy to see exactly what is helping the model make its predictions.
+  \item It captures non-linear relationships and feature interactions without manual feature engineering.
+  \item It is robust to outliers, since individual trees use threshold-based splits rather than a global fit to all data points.
+  \item It is invariant to feature scale, so designation (1--5) and resource allocation (1--10) do not require normalisation.
+  \item It provides built-in feature importance scores, which support both model interpretation and design validation.
 \end{itemize}
 
-When working with spreadsheet-style datasets that have a handful of columns and tens of thousands of rows, Random Forest generally does a great job without needing a massive amount of fine-tuning. This makes it a really practical and reliable choice for a thesis-sized project~\cite{fernandez2014}.
+For tabular datasets with a moderate number of features and tens of thousands of rows, Random Forest generally achieves strong performance with minimal hyperparameter tuning, making it suitable for a thesis-scope project~\cite{fernandez2014}. A limitation is that it produces point estimates rather than prediction intervals, which constrains confidence quantification.
 
 \subsubsection{Model Evaluation Metrics}
 
-To figure out how well these regression models are actually performing, I am relying on three complementary metrics:
+Three complementary metrics are used to evaluate the regression models:
 
 \begin{itemize}
-  \item \textbf{Mean Absolute Error (MAE):} This is simply the average of how far off our predictions are from the true values. For instance, on our 0--1 burn rate scale, an MAE of 0.05 means the model's guess is typically wrong by about 5 percentage points.
+  \item \textbf{Mean Absolute Error (MAE):} The average absolute difference between predicted and actual values. On a 0--1 burn rate scale, an MAE of 0.05 indicates that predictions are typically within 5 percentage points of the true value.
 
-  \item \textbf{Root Mean Squared Error (RMSE):} This metric is the square root of our averaged squared mistakes. Because of how the math works out, RMSE punishes the model a lot more for making huge errors. This helps us easily spot if the model is occasionally making some really bad outlier predictions.
+  \item \textbf{Root Mean Squared Error (RMSE):} The square root of the mean squared error. By squaring residuals before averaging, RMSE penalises large errors more heavily than MAE, making it sensitive to outlier predictions.
 
-  \item \textbf{Coefficient of Determination ($R^{2}$):} This metric tells us what proportion of the changes in our target variable can actually be explained by our model. An $R^{2}$ of 0.90 means our model understands and captures 90\% of why the burn rates are changing. A value closer to 1.0 means we have a much better fit.
+  \item \textbf{Coefficient of Determination ($R^{2}$):} The proportion of variance in the target explained by the model. An $R^{2}$ of 0.90 indicates that 90\% of burn rate variance is accounted for by the three input features.
 \end{itemize}
 
-Looking at all three of these scores together gives us a really complete and honest picture of model performance. MAE shows our everyday, average-case accuracy, RMSE checks on our worst-case sensitivity, and $R^{2}$ sums up the model's overall power to explain the data~\cite{hastie2009}.
+Reporting all three metrics provides a more complete picture than any single measure. MAE reflects typical prediction accuracy, RMSE captures worst-case sensitivity, and $R^{2}$ summarises overall explanatory power~\cite{hastie2009}.
 
 \subsection{Web Application Architectures}
 
 \subsubsection{Microservices vs.\ Monolithic Architecture}
 
-A monolithic architecture basically bundles the entire application; such as the user interface, the business rules, the data access, and any machine learning features; into one massive, single package. This way of building things is really easy to set up at first, but it gets pretty difficult to maintain and expand when the application becomes larger. This is especially true when different parts of your app need totally different coding tools to run smoothly~\cite{newman2015}.
+A monolithic architecture co-locates all application concerns, including the user interface, business logic, data access, and any ML components, within a single deployable unit. This approach simplifies initial setup but becomes increasingly difficult to maintain as the application grows, particularly when different subsystems require heterogeneous technology stacks~\cite{newman2015}.
 
-On the other hand, a microservice architecture breaks the application down into small, independent pieces that you can run on their own. Each of these smaller pieces, or services, focuses on doing just only one job really well~\cite{newman2015}. These services talk to each other over the internet using simple, lightweight formats like HTTP and REST. The best parts about doing it this way are that you can update one service without touching the rest, mix and match your programming languages (like using Python for your AI and JavaScript for your web pages), stop bugs from crashing the whole system, and allow different team members to work on separate things easily.
+A microservice architecture decomposes the application into independently deployable services, each responsible for a well-defined boundary of functionality~\cite{newman2015}. Services communicate over HTTP or lightweight messaging. The main advantages are independent deployment, technology heterogeneity, and fault isolation: a failure in one service does not propagate to others. The trade-off is increased operational complexity, as multiple services must be deployed, networked, and monitored.
 
-I decided to go with a microservice approach for this thesis because the machine learning part of the project has completely different things than the main web app. The AI component needs Python and a library called scikit-learn, but the web backend works best in the JavaScript ecosystem (using tools like Express and Mongoose). By pulling the AI service out and putting it into its own separate FastAPI microservice, my system stays neatly organized. This means I can build, test, and deploy the machine learning part totally independent of the website.
+A microservice architecture was selected for this thesis because the machine learning component has fundamentally different runtime requirements from the web backend. The AI service requires Python and scikit-learn, while the backend is more naturally implemented in Node.js. Separating them into a FastAPI microservice and an Express backend allows each to be developed, tested, and redeployed independently. The trade-off is that both services must be running simultaneously, and network failures between them require explicit timeout handling and error propagation logic.
 
 \subsubsection{RESTful API Design}
 
-Representational State Transfer, or REST, is essentially a set of clear guidelines for building apps that communicate over a network~\cite{fielding2000}. RESTful APIs use standard web actions (GET, POST, PUT, PATCH, DELETE) to interact with data based on web URLs. The main ideas here include keeping everything ``stateless'' (which means every request carries all the details needed to figure it out, without the server needing to remember the past), keeping the interface predictable, and keeping the user-side and server-side completely separate.
+Representational State Transfer (REST) defines a set of architectural constraints for distributed hypermedia systems~\cite{fielding2000}. RESTful APIs use standard HTTP methods (GET, POST, PUT, PATCH, DELETE) mapped to resource URLs. Key constraints include statelessness, meaning each request must contain all information necessary to process it, a uniform interface, and client-server separation.
 
-In this project, both the connection between the frontend and the web backend, as well as the backend talking to the AI service, follow these standard REST rules. To make catching errors super simple on the user's side, all responses are wrapped up in a uniform JSON format, which always looks like either \texttt{\{success, data\}} or \texttt{\{success, error\}}.
+Both the frontend-to-backend and backend-to-AI-service communication in this project follow REST conventions. All responses use a uniform JSON envelope, either \texttt{\{success: true, data: \{...\}\}} or \texttt{\{success: false, error: \{...\}\}}, which simplifies error handling on the client side.
 
 \subsection{Related Technologies}
 
 \subsubsection{React and Next.js for Frontend Development}
 
-React is a popular JavaScript library that helps build user interfaces by snapping together self-contained, reusable blocks called components~\cite{react2024}. Each component can take in data (called props) and manage its own inner details using handy features known as hooks. The best thing about React is its ``virtual DOM''; instead of constantly reloading the entire webpage, it is smart enough to quickly update just the tiny pieces of the screen that actually changed. This makes the rendering process incredibly fast, even if you are displaying a large dashboard full of heavy data.
+React is a component-based JavaScript library for building user interfaces~\cite{react2024}. Components receive data through props and manage local state via hooks. React's virtual DOM diffing algorithm minimises direct DOM manipulation, which keeps rendering efficient even in data-heavy dashboard views.
 
-Next.js is essentially an upgraded frame that wraps around React. It adds a bunch of really helpful tools on top, like setting up web routes based directly on how your folders are structured, pre-building pages on the server to save time, and handling built-in APIs~\cite{nextjs2024}. I am using Next.js with its App Router feature for my thesis, which just turns my folder structure into links automatically, alongside Turbopack so my coding tests load super quickly. For managing all the data moving between the server and my screens, I use TanStack Query (React Query). It quietly handles the tough stuff behind the scenes: saving data so we don't ask for it twice, fetching fresh updates in the background, and clearing out outdated information when changes happen.
+Next.js extends React with file-system-based routing, server-side rendering, and built-in API route support~\cite{nextjs2024}. This thesis uses Next.js~16 with the App Router, where the folder structure maps directly to application routes, and Turbopack for fast development rebuilds. Server state, including caching, background refetching, and cache invalidation on mutations, is handled by TanStack Query (React Query), which removes the need for manual fetch management across components.
 
 \subsubsection{Node.js and Express for Backend Services}
 
-Node.js is a runtime system built directly onto Google Chrome's engine, which basically allows developers to run JavaScript on backend servers rather than just in internet browsers~\cite{nodejs2024}. It operates in an event-driven way and doesn't get blocked up waiting for tasks to finish, which makes it absolutely fantastic for juggling a ton of simultaneous API requests without lagging.
+Node.js is a JavaScript runtime built on the V8 engine that enables server-side execution of JavaScript~\cite{nodejs2024}. Its non-blocking, event-driven model allows it to handle a large number of concurrent API requests without dedicated threads per connection.
 
-Express is a really clean, minimal framework for Node.js that gives you the basic tools to set up website paths, handle requests in steps, and deal with internet connections~\cite{express2024}. For my backend, I am using Express~5 and setting up the code in very clear, organized layers (breaking things into routes, controllers, services, and repositories) so no single file gets cluttered. I also use ``middleware'' stages to automatically handle tasks that apply to the whole app, like checking user logins (JWT), validating that incoming information looks correct (Zod schemas), and catching unexpected system crashes safely.
+Express is a minimal web framework for Node.js that provides routing, middleware chaining, and HTTP request handling~\cite{express2024}. The backend is implemented with Express~5 and organised into four layers (routes, controllers, services, repositories) to keep responsibilities separated. Cross-cutting concerns such as authentication (JWT verification), input validation (Zod schemas), and error handling are applied as middleware across all routes.
 
 \subsubsection{FastAPI for Machine Learning Serving}
 
-FastAPI is a modern web framework built in Python that is designed specifically to set up APIs really quickly, and it actually builds an interactive manual for itself as you code~\cite{fastapi2024}. It takes advantage of standard Python formatting and ``Pydantic'' models to strictly verify that any data sent its way is correct, and it is capable of handling tasks simultaneously without getting bogged down. The mix of running very fast, checking inputs for you, and drawing up its own documentation makes FastAPI an awesome choice for linking machine learning models to the web. In this project, the FastAPI service boots up, loads my scikit-learn model, and fires back prediction answers in under 10 milliseconds.
+FastAPI was selected for the AI microservice because of its high throughput, automatic OpenAPI documentation generation, and strict input validation via Pydantic~\cite{fastapi2024}. Its asynchronous request handling is well-suited to a service that performs CPU-bound inference and must remain responsive under concurrent requests. In this project, the FastAPI service loads the serialised scikit-learn model at startup and returns predictions in under 10 milliseconds per request.
 
 \subsection{Related Work}
 
-There are quite a few studies and systems out there that look at detecting employee burnout and tracking workplace wellness. However, most of them tackle the problem in a slightly different way or have a different focus than what I am doing in this thesis.
+Prior work on burnout detection and workplace wellness monitoring varies considerably in scope and methodology. The following review identifies the key gaps that this thesis addresses.
 
-\textbf{Pradhan and Jena (2019)} built a machine learning setup to predict burnout based on survey answers. They tested out a few different algorithms, like logistic regression and support vector machines, to see what worked best~\cite{pradhan2019}. The main difference is that they focused on simply sorting people into two categories: "burnt out" or "not burnt out", instead of calculating a sliding, continuous scale of burnout risk. Also, they did not take their model and build an actual web application around it for people to use.
+\textbf{Pradhan and Jena (2019)} applied machine learning, including logistic regression and support vector machines, to classify employees as burnt out or not based on survey responses~\cite{pradhan2019}. Although their approach demonstrates that survey data can support ML-based classification, the binary output limits its usefulness for continuous risk monitoring. More importantly, the study does not integrate the model into any deployable application or provide organisational-level analytics.
 
-\textbf{Bianchi et~al.\ (2021)} took a deep dive into the different surveys and psychological tools used to measure burnout. Their review confirmed that the CBI (which is used in this thesis) is a solid, reliable tool for this kind of research~\cite{bianchi2021}. However, their work was purely focused on the psychology and survey metrics; they didn't mix any kind of software or tech integration into it.
+\textbf{Bianchi et~al.\ (2021)} conducted a systematic review of burnout measurement instruments and confirmed that the CBI demonstrates adequate reliability across occupational contexts~\cite{bianchi2021}. However, their contribution is methodological rather than technical, and no software or data pipeline is described.
 
-\textbf{Employee wellness platforms} like Officevibe, Culture Amp, and Lattice already exist in the real world and do a good job of tracking engagement through surveys and showing the results on data dashboards~\cite{cultureamp2024}. But these are commercial business tools that mostly focus on general employee engagement and happiness. They typically don't use actual machine learning to predict future problems, and they aren't specifically built to spot deep, serious burnout.
+\textbf{Commercial wellness platforms} such as Officevibe, Culture Amp, and Lattice provide survey-based engagement tracking with dashboard visualisation~\cite{cultureamp2024}. These platforms are effective for tracking general engagement but rely on periodic, self-reported sentiment data rather than ML prediction. They are not designed specifically for burnout detection and do not expose department-level risk distribution or automated alert systems.
 
-There are also a lot of \textbf{Kaggle community notebooks} out there where developers have played around with the "Are Your Employees Burning Out?" dataset. They have tested out different regression models to try and predict burn rates~\cite{kaggle2021}. While these examples are great for showing how to train an AI model on its own, they stop right there. They don't hook those predictions up to a working website or offer big-picture dashboards for an entire organization to review.
+\textbf{Kaggle community notebooks} on the ``Are Your Employees Burning Out?'' dataset demonstrate regression modelling on the same data used in this thesis~\cite{kaggle2021}. While useful as model benchmarks, these notebooks remain isolated experiments. No web application is built around the predictions, and no organisational dashboard or alert mechanism is provided.
 
-That is exactly where my thesis comes in to fill the gap. I am taking a proven psychological survey (the CBI), teaming it up with a trained machine learning model (Random Forest), and building the whole thing into a complete web application. This creates a single, usable platform that gives individuals personal feedback while also giving managers an overall view of the company. Table~\ref{tab:related-comparison} provides a quick summary of how my project compares to these other approaches.
+The gap common to all reviewed work is the absence of an integrated platform that combines validated psychometric assessment, ML-based prediction, and organisational analytics. This thesis addresses that gap directly. Table~\ref{tab:related-comparison} summarises the comparison.
 
 \begin{table}[H]
   \centering
@@ -641,7 +628,7 @@ That is exactly where my thesis comes in to fill the gap. I am taking a proven p
 
 \subsection{System Architecture Overview}
 
-The system follows a three-part microservice setup to get everything working. It features a frontend built with React and Next.js, a web backend running on Node.js and Express, and a totally separate AI microservice powered by Python and FastAPI. Behind the scenes, the data is supported by both MySQL and MongoDB databases. All three parts of the system talk to each other over the web using standard RESTful HTTP APIs, and they all wrap their messages in the exact same JSON format to keep communication clear and simple.
+The system follows a three-service microservice design comprising a React/Next.js frontend, a Node.js/Express backend, and a Python/FastAPI AI service. Relational data is stored in MySQL and document data in MongoDB. All three services communicate over HTTP using a consistent JSON envelope format.
 
 \begin{figure}[H]
   \centering
@@ -650,13 +637,13 @@ The system follows a three-part microservice setup to get everything working. It
   \label{fig:system-architecture}
 \end{figure}
 
-I decided to split the project into three distinct services for a couple of reasons. First, the machine learning piece really needs Python and the scikit-learn library to run. At the same time, the main web backend is much easier to build using JavaScript, because its ecosystem is so good at handling web traffic, connecting to databases, and dealing with middleware tasks. Second, by keeping the AI service in its own little box, I can test it, work on it, and even restart it completely independently without crashing the main website. The backend is also set up with a handy switch (an environment variable). If I turn on \texttt{AI\_USE\_MOCK=true}, it just uses a simulated math formula for testing. If I flip it to \texttt{AI\_USE\_MOCK=false}, it actually sends requests to the real Python AI. This makes working on each part individually a lot less stressful.
+The machine learning component was separated into an independent service because its runtime requirements differ fundamentally from the web backend. Python and scikit-learn are required for inference, while the backend is better suited to the Node.js ecosystem given its extensive middleware and database tooling. Separating the AI component into a standalone FastAPI service also improves maintainability: the model can be retrained and redeployed without touching the main application. A configurable environment variable (\texttt{AI\_USE\_MOCK}) allows the backend to switch between the real Python service and an in-process mock formula during development, enabling the frontend and backend to be built and tested independently.
 
 \subsection{Database Design}
 
 \subsubsection{MySQL Schema}
 
-I use MySQL to hold all the highly structured, relational data. The design uses seven specific tables that are carefully linked together, so if a main record ever gets deleted, any connected records are automatically cleared out too.
+MySQL stores all relational, structured data. The schema consists of seven tables linked by foreign keys with cascading deletes to maintain referential integrity.
 
 \begin{figure}[H]
   \centering
@@ -666,36 +653,36 @@ I use MySQL to hold all the highly structured, relational data. The design uses 
 \end{figure}
 
 \begin{itemize}
-  \item \textbf{users:} This table securely stores log-in information (keeping passwords safe with a bcrypt scramble), basic demographic details, and the user's role (either employee or admin).
+  \item \textbf{users:} Stores authentication credentials (bcrypt-hashed passwords), basic demographic fields, and role assignment (employee or admin).
 
-  \item \textbf{departments:} This is simply a clean reference list of all the different factory departments (like Assembly Line~A, Maintenance, or Quality Control). It really helps organize data for the big admin heatmap.
+  \item \textbf{departments:} A reference table of factory organisational units (e.g.\ Assembly Line A, Maintenance, Quality Control), used to group employees for heatmap aggregation.
 
-  \item \textbf{hr\_profiles:} Every single user account has exactly one of these connected to it. It holds the pretend employee profile generated when they sign up: what department they are in, their designation level (1--5), their resource allocation score (1--10), whether they work a Day, Night, or Rotating shift, the company type, and if they can work from home. I made sure to map these numbers exactly to the ones used to train my AI model.
+  \item \textbf{hr\_profiles:} A one-to-one extension of the users table containing the synthetic HR record generated at registration: department, designation (1--5), resource allocation (1--10), shift type, company type, and WFH availability. Values are drawn from the same ranges as the training dataset to ensure in-distribution inputs to the model.
 
-  \item \textbf{assessment\_results:} A new row gets dropped in here every time a user finishes a quiz. It keeps track of their personal burnout score (0--100), work burnout score (0--100), mental fatigue score (0--10), the predicted burn rate the AI guessed (0--1), and their general risk category. I added search indexes based on the user's ID and the date so the app can draw historical trend graphs very fast.
+  \item \textbf{assessment\_results:} Records each completed assessment with personal burnout score (0--100), work burnout score (0--100), mental fatigue score (0--10), predicted burn rate (0--1), and risk level. A composite index on \texttt{(user\_id, taken\_at)} supports efficient trend queries.
 
-  \item \textbf{alerts:} These pop up automatically if a quiz reveals a dangerous stress level. The system supports three kinds: \texttt{high\_risk}, \texttt{critical\_risk}, and \texttt{trend\_spike}. I put an index on these so the website can instantly load an unread message inbox.
+  \item \textbf{alerts:} Stores system-generated notifications of types \texttt{high\_risk}, \texttt{critical\_risk}, and \texttt{trend\_spike}. An index on \texttt{(is\_read, created\_at)} supports the unread inbox query.
 
-  \item \textbf{employee\_kpis:} This holds a monthly snapshot of how employees are doing on the actual job, things like their attendance, productivity scores, work quality, overtime, finished tasks, and sick days. The admin dashboard pulls this data to see if higher burnout is actually hurting factory performance.
+  \item \textbf{employee\_kpis:} Monthly per-employee performance snapshots covering attendance, productivity, quality, overtime, task completion, and absence days. The admin dashboard uses this table to correlate KPI trends with burn rate.
 
-  \item \textbf{help\_resources:} A list of curated mental health links, but each link has a set stress minimum. The system will only display a resource if its requirement matches or is below the employee's current stress level.
+  \item \textbf{help\_resources:} Mental health resources, each assigned a minimum risk level. Only resources at or below the employee's current risk level are surfaced, avoiding irrelevant recommendations.
 \end{itemize}
 
 \subsubsection{MongoDB Collections}
 
-I went with MongoDB for two collections simply because it works better with documents that do not need rigid, unbending structure:
+MongoDB was selected for two collections whose document structure would be inefficient to represent in a relational schema:
 
 \begin{itemize}
-  \item \textbf{cbi\_questions:} This is just one large, single document holding the whole blueprint for the CBI quiz. It contains the quiz's title, its version, five different multiple-choice options with their math values, and it splits the quiz into two sections (personal and work-related). It also lists out all 13 questions, noting exactly which section they go in and whether they need to be scored backwards. Keeping this entire quiz in one single document means the system can just grab the whole thing at once, instead of trying to paste several database tables together.
+  \item \textbf{cbi\_questions:} A singleton document containing the complete CBI quiz definition, including response options, section groupings, and per-question metadata (section membership, reverse-scoring flag). Storing the entire quiz as one document allows the backend to fetch the complete quiz in a single read, avoiding a multi-table join.
 
-  \item \textbf{quiz\_submissions:} For every completed test, one document gets placed in this collection. It keeps a record of the MySQL user's ID, what version of the quiz they took, and exactly how they answered all 13 questions (including calculated math corrections for tricky questions). It also pre-calculates their section averages and keeps a link pointing to their main score in the MySQL table. Storing it this way bundles a user's exact, detailed answers tightly together as one solid file, which is much cleaner than spreading them across a relational database.
+  \item \textbf{quiz\_submissions:} One document per completed assessment, recording the MySQL user ID, quiz version, all 13 individual responses with raw and adjusted values, section averages, and a back-reference to the MySQL assessment ID. The nested structure keeps a user's full response set together as a single unit, which is better suited to document storage than normalised relational tables.
 \end{itemize}
 
 \subsection{Backend Design}
 
 \subsubsection{Layered Architecture}
 
-My Express backend relies on a strict four-layer design strategy. I did this to make absolute sure that the part answering web requests, the part doing heavy app math, and the part talking to the databases all stay entirely out of each other's way.
+The Express backend follows a strict four-layer architecture to ensure that HTTP handling, business logic, and data access remain decoupled.
 
 \begin{figure}[H]
   \centering
@@ -705,20 +692,20 @@ My Express backend relies on a strict four-layer design strategy. I did this to 
 \end{figure}
 
 \begin{itemize}
-  \item \textbf{Routes:} These scripts map out the internet paths and attach special gateway steps. For example, they check if a person is actually logged in (\texttt{authenticate}), if they are allowed on the page (\texttt{requireRole}), and if the info they typed makes sense (checked against Zod rules). Routes basically never contain any real business rules.
+  \item \textbf{Routes:} Map URL paths to middleware chains. Each route applies authentication (\texttt{authenticate}), role enforcement (\texttt{requireRole}), and input validation (Zod schemas) before delegating to a controller. No business logic is present at this layer.
 
-  \item \textbf{Controllers:} Think of these as very basic middlemen. They pull user details out of the internet request, toss the tough work over to the "Services" layer, and then carefully wrap the Service's final answer up in the simple \texttt{\{success: true, data\}} envelope before handing it back to the internet.
+  \item \textbf{Controllers:} Extract parameters from the request, delegate to the appropriate service method, and wrap the result in the standard \texttt{\{success: true, data\}} envelope before sending the response.
 
-  \item \textbf{Services:} This is where the heavy lifting and main logic happen. It is responsible for figuring out complex quiz scores, calculating the final fatigue number, bouncing questions to the AI, setting final risk groups, triggering danger alerts, crunching totals for the big dashboards, and safely organizing updates so database moves are secure.
+  \item \textbf{Services:} Contain all business logic: CBI scoring, mental fatigue calculation, AI prediction calls, risk classification, alert rule evaluation, dashboard aggregation, and transactional write coordination.
 
-  \item \textbf{Repositories:} These files have one job: safely talking to the databases. To talk to MySQL, they run parameterized SQL statements using a library called \texttt{mysql2/promise}. To connect to MongoDB, they use Mongoose tools. Literally no other piece of the app is ever allowed to poke the databases directly.
+  \item \textbf{Repositories:} Encapsulate all database access. MySQL queries are executed via parameterised \texttt{mysql2/promise} calls; MongoDB access uses Mongoose. No other layer interacts with the database directly.
 \end{itemize}
 
 \subsubsection{Authentication and Authorisation}
 
-To control how users securely log in, the whole project utilizes JSON Web Tokens (JWT). When someone registers a new account, the app permanently scrambles their chosen password securely using bcrypt, then grants them a signed digital ticket (the JWT). That ticket holds just enough basic info, like their ID and role. Making the user account and creating the mock HR file happens in one combined database step, which keeps things extremely organized and prevents bugs.
+Authentication is implemented with JSON Web Tokens (JWT). During registration, the password is hashed with bcrypt and a user record and synthetic HR profile are created within a single MySQL transaction, ensuring that no orphaned user record is left if HR profile generation fails. The issued JWT contains the user ID and role and is signed with a secret key enforced to be at least 16 characters.
 
-For knowing who is allowed to view which pages, the router acts as a bouncer. The app has routes strictly looking for \texttt{role = ``employee''} and others just looking for \texttt{role = ``admin''}. Other general shared pages will allow access as long as someone is authenticated. Just to be completely safe against hackers trying to forge the login tokens, I added a rule in the settings forcing the digital server key to be a heavy secret string at least 16 characters long.
+Route protection is applied through middleware: employee-only routes require \texttt{role = ``employee''}, admin-only routes require \texttt{role = ``admin''}, and shared routes require only a valid token. JWT forgery is mitigated by the signing key requirement.
 
 \subsubsection{Quiz Scoring Pipeline}
 
@@ -752,21 +739,21 @@ The scoring formulae are:
 
 \subsubsection{Alert Rules}
 
-Right exactly when the database securely saves a completed quiz result in its main transaction, the app runs two separate alert checks behind the scenes:
+Alert rule evaluation is executed within the same MySQL transaction that writes the assessment result:
 
 \begin{enumerate}
-  \item \textbf{Threshold alert:} If someone's burnout risk calculation comes back as ``high'' or ``critical'', the app immediately creates a \texttt{high\_risk} or \texttt{critical\_risk} warning notification.
+  \item \textbf{Threshold alert:} If the predicted burn rate is classified as \texttt{high} or \texttt{critical}, a corresponding \texttt{high\_risk} or \texttt{critical\_risk} alert is inserted.
 
-  \item \textbf{Trend spike alert:} The system also looks back at how the person scored on their previous quiz. If their new predicted burn rate suddenly jumps up by 0.15 or more compared to last time, it sets off a \texttt{trend\_spike} alert to heavily flag that sudden increase.
+  \item \textbf{Trend spike alert:} The service retrieves the most recent prior assessment for the same user. If the new predicted burn rate exceeds the prior value by 0.15 or more, a \texttt{trend\_spike} alert is generated.
 \end{enumerate}
 
-A single quiz attempt can absolutely trigger both of these rules at the exact same time, adding up to two separate alert messages into the database at once.
+Both rules may trigger on the same assessment, producing up to two alert records per submission.
 
 \subsection{AI Microservice Design}
 
 \subsubsection{Dataset Description}
 
-To actually teach the machine learning model how to predict burnout, I fed it a very popular public dataset from Kaggle named ``Are Your Employees Burning Out?''~\cite{kaggle2021}, which holds data points on around 22,000 distinct employees. Even though each row in this file technically contains nine different data columns, I narrowed things down a bit. I am only really using three specific columns as my main inputs, along with just one final column that serves as the ultimate target answer I want the AI to learn how to guess:
+The model was trained on the ``Are Your Employees Burning Out?'' dataset from Kaggle~\cite{kaggle2021}, containing approximately 22{,}000 employee records. Although the dataset includes nine columns, only three features and one target variable were used:
 
 \begin{table}[H]
   \centering
@@ -785,37 +772,37 @@ To actually teach the machine learning model how to predict burnout, I fed it a 
   \end{tabular}
 \end{table}
 
-There are a few other columns in the dataset (like Employee ID, Date of Joining, Gender, Company Type, and WFH Setup Available), but I am not using them to train the model. I purposely kept the features limited to just three because, when the live app is actually running, these are the only three pieces of information we will realistically have: the designation and resource allocation come from the simulated HR profile, and the mental fatigue score comes directly from the user's CBI quiz.
+The remaining columns (Employee ID, Date of Joining, Gender, Company Type, WFH Setup Available) were excluded because they are not available in the live system. The three selected features correspond exactly to what the application can supply at inference time: designation and resource allocation from the simulated HR profile, and mental fatigue score from the CBI assessment.
 
 \subsubsection{Feature Selection Justification}
 
-Sticking to exactly three features helps the project in three main ways. First, it perfectly matches the model with the data the app actually collects, so I do not have to worry about pulling in fake data that would require a real factory connection. Second, using fewer features makes the model much easier to understand and explain. This transparency is super important for both thesis evaluation and making sure end-users actually trust the results. Finally, because the simulated HR numbers use the exact same ranges as the training data, the model always gets the kind of input it expects, which cuts down on weird or unreliable predictions.
+Restricting the feature set to three variables serves three purposes. First, it aligns the model with the data the application actually collects, avoiding the need to impute or fabricate features that would require a real factory integration. Second, a three-feature model is straightforward to interpret and explain, which is important both for academic evaluation and for building end-user trust in the predictions. Third, because the simulated HR values are drawn from the same ranges as the training data, the model consistently receives in-distribution inputs, reducing the risk of extrapolation. A limitation of this approach is that the excluded columns, particularly Gender, Company Type, and WFH Setup, may carry some predictive signal that is not captured by the current feature set.
 
 \subsubsection{Data Preprocessing}
 
-Getting the data cleaned up and ready took three main steps:
+Preprocessing involved three steps:
 
 \begin{enumerate}
-  \item \textbf{Dropping empty targets:} First, if the Burn Rate column is blank in any row, that row entirely is remove entirely. It is almost impossible to train the model without the final answer.
+  \item \textbf{Target filtering:} Rows with a missing Burn Rate value were dropped, as they cannot contribute to supervised learning.
 
-  \item \textbf{Filling in missing values:} If a Resource Allocation or Mental Fatigue Score is missing, I fill in the blank with the median of that column. I went with the median instead of the average because it handles weird outliers much better when we are dealing with a numbered rating scale.
+  \item \textbf{Missing value imputation:} Null values in Resource Allocation and Mental Fatigue Score were filled with the column median, which is more robust to skewed distributions than the mean.
 
-  \item \textbf{Train/test split:} I split the data into 80\% for training and 20\% for testing. I also set a fixed random seed (\texttt{random\_state=42}) so that my results are reproducible and stay exactly the same every time the code is executed.
+  \item \textbf{Train/test split:} The dataset was divided into 80\% training and 20\% test sets with \texttt{random\_state=42} for reproducibility.
 \end{enumerate}
 
-When the app makes a prediction, the Node.js backend double-checks everything. If it sees a missing \texttt{resource\_allocation}, it automatically forces it to a default score of~5 (right in the middle) before sending it to the Python service. This makes sure the model always has all three numbers ready to go.
+At inference time, the Node.js backend defaults a missing \texttt{resource\_allocation} to 5 before forwarding the request to the Python service, ensuring the model always receives a complete input vector.
 
 \subsubsection{Model Selection}
 
-I decided to train and compare two different models:
+Two models were trained for comparison:
 
 \begin{itemize}
-  \item \textbf{Linear Regression (baseline):} I used this as a starting point. It gives me a basic standard for performance, and it is really easy to see exactly how the model weighs the different inputs.
+  \item \textbf{Linear Regression (baseline):} Establishes a performance floor and provides directly interpretable coefficients.
 
-  \item \textbf{Random Forest Regressor (primary):} This is my main model. I chose it because it easily handles complex, non-linear patterns, isn't easily thrown off by weird outliers, doesn't mind how the numbers are scaled, and naturally tells me which features actually mattered the most.
+  \item \textbf{Random Forest Regressor (primary):} Selected for its robustness to non-linear relationships, tolerance of outliers, invariance to feature scale, and built-in feature importance scores.
 \end{itemize}
 
-I definitely thought about using other methods (like Gradient Boosting, Neural Networks, SVR, and kNN), but decided against them. With only three features, Gradient Boosting models (like XGBoost or LightGBM) only give a tiny improvement but make setting up the model way more complicated. Neural networks need a lot more data and tweaking to beat simpler tree models on basic spreadsheet data. SVR gets too tricky with scaling the features, and kNN struggles with messy data while also failing to show which features were actually important.
+Other ensemble methods were considered but not pursued. Gradient Boosting variants (XGBoost, LightGBM) offer marginal accuracy improvements over Random Forest on low-dimensional tabular data while introducing substantially more hyperparameter complexity. Neural networks require more extensive tuning to outperform tree ensembles on this type of data and are harder to interpret. SVR requires careful feature scaling and does not expose feature importance. k-NN degrades with missing values and scales poorly with dataset size. Given the three-feature input and the requirement for interpretable importance scores, Random Forest was the most appropriate choice.
 
 \subsubsection{FastAPI Service Architecture}
 
@@ -1383,38 +1370,13 @@ data sets.
 
 \subsection{Model Performance Analysis}
 
-The Random Forest model scored an $R^{2}$ of 0.90, an MAE of 0.048, and
-an RMSE of 0.061 on the held-out test set
-(Table~\ref{tab:model-comparison}). These numbers mean the model explains
-90\% of the variance in burn rate, and its predictions are usually
-within 5 percentage points on the 0-1 scale. Compared to Linear
-Regression, the Random Forest did 3.6 percentage points better in
-$R^{2}$, which shows it can capture non-linear interactions between the
-three features, something a linear model cannot do without extra feature
-engineering.
+The Random Forest model achieved an $R^{2}$ of 0.90, an MAE of 0.048, and an RMSE of 0.061 on the held-out test set (Table~\ref{tab:model-comparison}). The model explains 90\% of burn rate variance and its predictions are typically within 5 percentage points on the 0--1 scale. The improvement over Linear Regression of 3.6 percentage points in $R^{2}$ indicates that the relationship between the three features and burn rate contains non-linear structure that a linear model cannot capture without additional feature engineering.
 
-Feature importance analysis reveals that the mental fatigue score makes
-up about 85\% of the model's predictive power. Resource allocation
-contributes around 10\%, and designation about 5\%. This lines up with
-domain knowledge: an employee's psychological state is the clearest
-indicator of burnout risk, while workload intensity and seniority matter
-less. The strong role played by the mental fatigue score also supports
-the system design, where the CBI quiz, the source of this score, is
-placed at the center of the assessment workflow.
+Feature importance analysis reveals that the mental fatigue score contributes approximately 85\% of predictive weight. Resource allocation accounts for roughly 10\% and designation for approximately 5\%. This distribution is consistent with the hypothesis that an employee's psychological state, as measured by the CBI, is a stronger predictor of burnout risk than organisational role or workload assignment. It also validates the system design, where the CBI quiz is the primary data collection mechanism.
 
-The residual analysis (Figure~\ref{fig:residual-analysis}) shows that
-prediction errors are scattered randomly around zero with no obvious
-pattern. This indicates the model does not consistently over-predict or
-under-predict across the burn rate range. The residuals are roughly
-normally distributed and centered at zero, which is a good sign for a
-regression model.
+The residual analysis (Figure~\ref{fig:residual-analysis}) shows prediction errors distributed randomly around zero with no systematic bias across the burn rate range, suggesting the model does not consistently over- or under-predict at any particular risk level. Residuals are approximately normally distributed and centred at zero.
 
-When compared to public Kaggle notebooks trained on the same dataset
-using all available features, the system's $R^{2}$ of 0.90, using only
-three features, fits within the reported range of 0.90-0.93 for
-Random Forest models. This suggests the three selected features capture
-most of the useful signal, and the extra columns (Gender, Company Type,
-WFH Setup) do not add much.
+Compared to public Kaggle notebooks trained on the same dataset using all available features, the three-feature model's $R^{2}$ of 0.90 falls within the reported range of 0.90--0.93 for Random Forest models. This suggests that most of the predictive signal in the dataset is concentrated in the three selected features, and the additional columns contribute relatively little incremental information. However, this observation is specific to this dataset and may not generalise to other organisational contexts where variables such as gender or remote work availability play a larger role.
 
 \subsection{Functional Testing}
 
