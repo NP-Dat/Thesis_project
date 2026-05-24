@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.5.8)  20 MAY 2026 04:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.5.8)  24 MAY 2026 08:08
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -571,7 +571,7 @@ Package pdftex.def Info: Screenshot 2025-12-03 205743.png  used on input line 12
  [1
 
 {C:/Users/DAT/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/DAT/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc} <./Screenshot 2025-12-03 205743.png>] [1]
-LaTeX Font Info:    Trying to load font information for OT1+ztmcm on input line 246.
+LaTeX Font Info:    Trying to load font information for OT1+ztmcm on input line 241.
  (C:\Users\DAT\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1ztmcm.fd
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
@@ -579,28 +579,28 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `ztmcm' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Trying to load font information for OML+ztmcm on input line 246.
+LaTeX Font Info:    Trying to load font information for OML+ztmcm on input line 241.
  (C:\Users\DAT\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omlztmcm.fd
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
-LaTeX Font Info:    Trying to load font information for OMS+ztmcm on input line 246.
+LaTeX Font Info:    Trying to load font information for OMS+ztmcm on input line 241.
  (C:\Users\DAT\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omsztmcm.fd
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
-LaTeX Font Info:    Trying to load font information for OMX+ztmcm on input line 246.
+LaTeX Font Info:    Trying to load font information for OMX+ztmcm on input line 241.
  (C:\Users\DAT\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omxztmcm.fd
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 )
-LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 246.
+LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 241.
  (C:\Users\DAT\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 246.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 241.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 246.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 241.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 246.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 241.
  (C:\Users\DAT\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 ) (C:\Users\DAT\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msb.cfg
@@ -621,249 +621,231 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.302 
-       [1] [2] [3] [4]
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 376.
- (C:\Users\DAT\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1ptm.fd
-File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-) [5] [6] [7] [8] [9
+l.305 
+       [1] [2] [3] [4] [5] [6] [7
 
-] [10] [11] [12] [13] [14]
+] [8] [9] [10] [11] [12]
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-
-Underfull \hbox (badness 10000) in paragraph at lines 568--569
-\T1/cmtt/m/n/12 {success: true, data: {...}} \T1/ptm/m/n/12 (+20) or \T1/cmtt/m/n/12 {success: false, error: {...}}\T1/ptm/m/n/12 (+20) ,
- []
-
-[15] [16] [17]
-<02-system-architecture.png, id=675, 2409.0pt x 1011.78pt>
+ [13] [14] [15] [16]
+<02-system-architecture.png, id=658, 2409.0pt x 1011.78pt>
 File: 02-system-architecture.png Graphic file (type png)
 <use 02-system-architecture.png>
-Package pdftex.def Info: 02-system-architecture.png  used on input line 635.
+Package pdftex.def Info: 02-system-architecture.png  used on input line 577.
 (pdftex.def)             Requested size: 395.98996pt x 166.30351pt.
- [18
+ [17
 
  <./02-system-architecture.png>]
-<03-er-diagram.png, id=681, 858.95906pt x 577.40718pt>
+<03-er-diagram.png, id=664, 858.95906pt x 577.40718pt>
 File: 03-er-diagram.png Graphic file (type png)
 <use 03-er-diagram.png>
-Package pdftex.def Info: 03-er-diagram.png  used on input line 650.
+Package pdftex.def Info: 03-er-diagram.png  used on input line 592.
 (pdftex.def)             Requested size: 395.98996pt x 266.19202pt.
- [19 <./03-er-diagram.png>]
-Overfull \hbox (23.99028pt too wide) in paragraph at lines 664--665
-[]\T1/ptm/b/n/12 (-20) alerts: \T1/ptm/m/n/12 (-20) Stores system-generated no-ti-fi-ca-tions of types \T1/cmtt/m/n/12 high_risk\T1/ptm/m/n/12 (-20) , \T1/cmtt/m/n/12 critical_risk\T1/ptm/m/n/12 (-20) ,
- []
-
-[20]
-<04-backend-layer.png, id=692, 2135.98pt x 1991.44pt>
+ [18 <./03-er-diagram.png>] [19]
+<04-backend-layer.png, id=675, 2135.98pt x 1991.44pt>
 File: 04-backend-layer.png Graphic file (type png)
 <use 04-backend-layer.png>
-Package pdftex.def Info: 04-backend-layer.png  used on input line 689.
+Package pdftex.def Info: 04-backend-layer.png  used on input line 619.
 (pdftex.def)             Requested size: 333.46758pt x 310.88826pt.
- [21] [22 <./04-backend-layer.png>]
-<05-quiz-pipeline.png, id=702, 2940.9875pt x 1445.4pt>
+ [20] [21 <./04-backend-layer.png>]
+<05-quiz-pipeline.png, id=685, 2940.9875pt x 1445.4pt>
 File: 05-quiz-pipeline.png Graphic file (type png)
 <use 05-quiz-pipeline.png>
-Package pdftex.def Info: 05-quiz-pipeline.png  used on input line 718.
+Package pdftex.def Info: 05-quiz-pipeline.png  used on input line 642.
 (pdftex.def)             Requested size: 354.31049pt x 174.12422pt.
- [23] [24 <./05-quiz-pipeline.png>] [25]
-Overfull \hbox (5.2382pt too wide) in paragraph at lines 793--794
-[]\T1/ptm/m/n/12 (-20) At in-fer-ence time, the Node.js back-end de-faults a miss-ing \T1/cmtt/m/n/12 resource_allocation
- []
-
-[26]
-<06-ai-service-arch.png, id=731, 2230.3325pt x 1927.2pt>
+ [22] [23 <./05-quiz-pipeline.png>] [24] [25]
+<06-ai-service-arch.png, id=709, 2230.3325pt x 1927.2pt>
 File: 06-ai-service-arch.png Graphic file (type png)
 <use 06-ai-service-arch.png>
-Package pdftex.def Info: 06-ai-service-arch.png  used on input line 814.
+Package pdftex.def Info: 06-ai-service-arch.png  used on input line 717.
 (pdftex.def)             Requested size: 354.31049pt x 306.1528pt.
- [27] [28 <./06-ai-service-arch.png>]
-<07-sitemap.png, id=741, 1601.985pt x 1517.67pt>
-File: 07-sitemap.png Graphic file (type png)
-<use 07-sitemap.png>
-Package pdftex.def Info: 07-sitemap.png  used on input line 835.
-(pdftex.def)             Requested size: 375.14705pt x 355.40198pt.
- [29] [30 <./07-sitemap.png>] [31] [32] [33
-
-] [34] [35] [36] [37]
-<08-feature-importance.png, id=795, 565.8741pt x 274.626pt>
-File: 08-feature-importance.png Graphic file (type png)
-<use 08-feature-importance.png>
-Package pdftex.def Info: 08-feature-importance.png  used on input line 1085.
-(pdftex.def)             Requested size: 312.62466pt x 151.7278pt.
-<09-burn-rate-distribution.png, id=797, 708.246pt x 346.896pt>
-File: 09-burn-rate-distribution.png Graphic file (type png)
-<use 09-burn-rate-distribution.png>
-Package pdftex.def Info: 09-burn-rate-distribution.png  used on input line 1099.
-(pdftex.def)             Requested size: 312.62466pt x 153.12697pt.
- [38 <./08-feature-importance.png>]
-<10-correlation-heatmap.png, id=803, 473.3685pt x 419.166pt>
-File: 10-correlation-heatmap.png Graphic file (type png)
-<use 10-correlation-heatmap.png>
-Package pdftex.def Info: 10-correlation-heatmap.png  used on input line 1106.
-(pdftex.def)             Requested size: 312.62466pt x 276.83589pt.
-<11-actual-vs-predicted.png, id=804, 1141.866pt x 424.9476pt>
-File: 11-actual-vs-predicted.png Graphic file (type png)
-<use 11-actual-vs-predicted.png>
-Package pdftex.def Info: 11-actual-vs-predicted.png  used on input line 1113.
-(pdftex.def)             Requested size: 375.14705pt x 139.61066pt.
- [39 <./09-burn-rate-distribution.png> <./10-correlation-heatmap.png>]
-<12-residual-analysis.png, id=811, 1141.866pt x 354.123pt>
-File: 12-residual-analysis.png Graphic file (type png)
-<use 12-residual-analysis.png>
-Package pdftex.def Info: 12-residual-analysis.png  used on input line 1120.
-(pdftex.def)             Requested size: 375.14705pt x 116.34221pt.
-
-Overfull \hbox (12.71126pt too wide) in paragraph at lines 1137--1146
-[]\T1/ptm/m/n/12 (-20) A dual-mode ar-chi-tec-ture is im-ple-mented in the Ex-press back-end's \T1/cmtt/m/n/12 ai.service.js\T1/ptm/m/n/12 (-20) ,
+ [26]
+Overfull \hbox (17.5842pt too wide) in paragraph at lines 722--723
+[]\T1/ptm/m/n/12 (-20) To keep things fast, the ap-pli-ca-tion loads the ac-tual model file (\T1/cmtt/m/n/12 burnout_model.pkl\T1/ptm/m/n/12 (-20) )
  []
 
-[40 <./11-actual-vs-predicted.png> <./12-residual-analysis.png>]
-<13-screenshot-login.png, id=818, 1242.89343pt x 521.69907pt>
+[27 <./06-ai-service-arch.png>]
+<07-sitemap.png, id=719, 1601.985pt x 1517.67pt>
+File: 07-sitemap.png Graphic file (type png)
+<use 07-sitemap.png>
+Package pdftex.def Info: 07-sitemap.png  used on input line 738.
+(pdftex.def)             Requested size: 375.14705pt x 355.40198pt.
+ [28] [29 <./07-sitemap.png>] [30] [31] [32
+
+] [33] [34] [35] [36]
+<08-feature-importance.png, id=762, 565.8741pt x 274.626pt>
+File: 08-feature-importance.png Graphic file (type png)
+<use 08-feature-importance.png>
+Package pdftex.def Info: 08-feature-importance.png  used on input line 903.
+(pdftex.def)             Requested size: 312.62466pt x 151.7278pt.
+<09-burn-rate-distribution.png, id=764, 708.246pt x 346.896pt>
+File: 09-burn-rate-distribution.png Graphic file (type png)
+<use 09-burn-rate-distribution.png>
+Package pdftex.def Info: 09-burn-rate-distribution.png  used on input line 912.
+(pdftex.def)             Requested size: 312.62466pt x 153.12697pt.
+ [37 <./08-feature-importance.png>]
+<10-correlation-heatmap.png, id=771, 473.3685pt x 419.166pt>
+File: 10-correlation-heatmap.png Graphic file (type png)
+<use 10-correlation-heatmap.png>
+Package pdftex.def Info: 10-correlation-heatmap.png  used on input line 919.
+(pdftex.def)             Requested size: 312.62466pt x 276.83589pt.
+<11-actual-vs-predicted.png, id=772, 1141.866pt x 424.9476pt>
+File: 11-actual-vs-predicted.png Graphic file (type png)
+<use 11-actual-vs-predicted.png>
+Package pdftex.def Info: 11-actual-vs-predicted.png  used on input line 926.
+(pdftex.def)             Requested size: 375.14705pt x 139.61066pt.
+ [38 <./09-burn-rate-distribution.png> <./10-correlation-heatmap.png>]
+<12-residual-analysis.png, id=779, 1141.866pt x 354.123pt>
+File: 12-residual-analysis.png Graphic file (type png)
+<use 12-residual-analysis.png>
+Package pdftex.def Info: 12-residual-analysis.png  used on input line 933.
+(pdftex.def)             Requested size: 375.14705pt x 116.34221pt.
+ [39 <./11-actual-vs-predicted.png> <./12-residual-analysis.png>] [40]
+<13-screenshot-login.png, id=791, 1242.89343pt x 521.69907pt>
 File: 13-screenshot-login.png Graphic file (type png)
 <use 13-screenshot-login.png>
-Package pdftex.def Info: 13-screenshot-login.png  used on input line 1174.
+Package pdftex.def Info: 13-screenshot-login.png  used on input line 965.
 (pdftex.def)             Requested size: 395.98996pt x 166.21474pt.
- [41]
-<14-screenshot-register.png, id=824, 1212.78094pt x 456.20438pt>
+<14-screenshot-register.png, id=792, 1212.78094pt x 456.20438pt>
 File: 14-screenshot-register.png Graphic file (type png)
 <use 14-screenshot-register.png>
-Package pdftex.def Info: 14-screenshot-register.png  used on input line 1181.
+Package pdftex.def Info: 14-screenshot-register.png  used on input line 972.
 (pdftex.def)             Requested size: 395.98996pt x 148.95381pt.
- [42 <./13-screenshot-login.png> <./14-screenshot-register.png>]
-<15-screenshot-employee-dashboard.png, id=831, 877.77937pt x 619.56468pt>
+ [41 <./13-screenshot-login.png> <./14-screenshot-register.png>]
+<15-screenshot-employee-dashboard.png, id=799, 877.77937pt x 619.56468pt>
 File: 15-screenshot-employee-dashboard.png Graphic file (type png)
 <use 15-screenshot-employee-dashboard.png>
-Package pdftex.def Info: 15-screenshot-employee-dashboard.png  used on input line 1204.
+Package pdftex.def Info: 15-screenshot-employee-dashboard.png  used on input line 985.
 (pdftex.def)             Requested size: 395.98996pt x 279.51056pt.
-<16-screenshot-assessment.png, id=832, 885.3075pt x 532.99126pt>
+ [42 <./15-screenshot-employee-dashboard.png>]
+<16-screenshot-assessment.png, id=805, 885.3075pt x 532.99126pt>
 File: 16-screenshot-assessment.png Graphic file (type png)
 <use 16-screenshot-assessment.png>
-Package pdftex.def Info: 16-screenshot-assessment.png  used on input line 1220.
+Package pdftex.def Info: 16-screenshot-assessment.png  used on input line 1001.
 (pdftex.def)             Requested size: 395.98996pt x 238.40434pt.
- [43 <./15-screenshot-employee-dashboard.png>]
-<17-screenshot-results.png, id=839, 813.0375pt x 618.05907pt>
+<17-screenshot-results.png, id=806, 813.0375pt x 618.05907pt>
 File: 17-screenshot-results.png Graphic file (type png)
 <use 17-screenshot-results.png>
-Package pdftex.def Info: 17-screenshot-results.png  used on input line 1233.
+Package pdftex.def Info: 17-screenshot-results.png  used on input line 1014.
 (pdftex.def)             Requested size: 395.98996pt x 301.02202pt.
- [44 <./16-screenshot-assessment.png>]
-<18-screenshot-history.png, id=845, 815.29594pt x 487.8225pt>
+ [43 <./16-screenshot-assessment.png>]
+<18-screenshot-history.png, id=813, 815.29594pt x 487.8225pt>
 File: 18-screenshot-history.png Graphic file (type png)
 <use 18-screenshot-history.png>
-Package pdftex.def Info: 18-screenshot-history.png  used on input line 1245.
+Package pdftex.def Info: 18-screenshot-history.png  used on input line 1026.
 (pdftex.def)             Requested size: 395.98996pt x 236.93602pt.
- [45 <./17-screenshot-results.png>]
-<19-screenshot-admin-dashboard.png, id=851, 1444.64719pt x 812.28468pt>
+ [44 <./17-screenshot-results.png>]
+<19-screenshot-admin-dashboard.png, id=819, 1444.64719pt x 812.28468pt>
 File: 19-screenshot-admin-dashboard.png Graphic file (type png)
 <use 19-screenshot-admin-dashboard.png>
-Package pdftex.def Info: 19-screenshot-admin-dashboard.png  used on input line 1263.
+Package pdftex.def Info: 19-screenshot-admin-dashboard.png  used on input line 1043.
 (pdftex.def)             Requested size: 395.98996pt x 222.6539pt.
- [46 <./18-screenshot-history.png>]
-<20-screenshot-dept-employees.png, id=857, 1210.5225pt x 656.4525pt>
+ [45 <./18-screenshot-history.png>]
+<20-screenshot-dept-employees.png, id=825, 1210.5225pt x 656.4525pt>
 File: 20-screenshot-dept-employees.png Graphic file (type png)
 <use 20-screenshot-dept-employees.png>
-Package pdftex.def Info: 20-screenshot-dept-employees.png  used on input line 1277.
+Package pdftex.def Info: 20-screenshot-dept-employees.png  used on input line 1057.
 (pdftex.def)             Requested size: 395.98996pt x 214.73685pt.
- [47 <./19-screenshot-admin-dashboard.png>]
-<21-screenshot-dept-analytics.png, id=863, 1328.71407pt x 768.62157pt>
+ [46 <./19-screenshot-admin-dashboard.png>]
+<21-screenshot-dept-analytics.png, id=831, 1328.71407pt x 768.62157pt>
 File: 21-screenshot-dept-analytics.png Graphic file (type png)
 <use 21-screenshot-dept-analytics.png>
-Package pdftex.def Info: 21-screenshot-dept-analytics.png  used on input line 1284.
+Package pdftex.def Info: 21-screenshot-dept-analytics.png  used on input line 1064.
 (pdftex.def)             Requested size: 395.98996pt x 229.06358pt.
-<22-screenshot-employee-detail.png, id=864, 920.68968pt x 652.68843pt>
+<22-screenshot-employee-detail.png, id=832, 920.68968pt x 652.68843pt>
 File: 22-screenshot-employee-detail.png Graphic file (type png)
 <use 22-screenshot-employee-detail.png>
-Package pdftex.def Info: 22-screenshot-employee-detail.png  used on input line 1296.
+Package pdftex.def Info: 22-screenshot-employee-detail.png  used on input line 1076.
 (pdftex.def)             Requested size: 395.98996pt x 280.73022pt.
- [48 <./20-screenshot-dept-employees.png> <./21-screenshot-dept-analytics.png>]
-<23-screenshot-alerts.png, id=871, 1212.02812pt x 654.19406pt>
+ [47 <./20-screenshot-dept-employees.png> <./21-screenshot-dept-analytics.png>]
+<23-screenshot-alerts.png, id=839, 1212.02812pt x 654.19406pt>
 File: 23-screenshot-alerts.png Graphic file (type png)
 <use 23-screenshot-alerts.png>
-Package pdftex.def Info: 23-screenshot-alerts.png  used on input line 1309.
+Package pdftex.def Info: 23-screenshot-alerts.png  used on input line 1085.
 (pdftex.def)             Requested size: 395.98996pt x 213.73853pt.
- [49 <./22-screenshot-employee-detail.png>]
-<24-screenshot-resources.png, id=878, 1219.55624pt x 576.65437pt>
+ [48 <./22-screenshot-employee-detail.png>]
+<24-screenshot-resources.png, id=845, 1219.55624pt x 576.65437pt>
 File: 24-screenshot-resources.png Graphic file (type png)
 <use 24-screenshot-resources.png>
-Package pdftex.def Info: 24-screenshot-resources.png  used on input line 1323.
+Package pdftex.def Info: 24-screenshot-resources.png  used on input line 1094.
 (pdftex.def)             Requested size: 395.98996pt x 187.23447pt.
- [50 <./23-screenshot-alerts.png> <./24-screenshot-resources.png>] [51] [52] [53
+ [49 <./23-screenshot-alerts.png>]
+Underfull \hbox (badness 1796) in paragraph at lines 1101--1102
+[]\T1/ptm/m/n/12 (+20) Our fron-tend ar-chi-tec-ture breaks down into 15 reusable UI prim-i-tives
+ []
+
+[50 <./24-screenshot-resources.png>] [51] [52
 
 ]
-Underfull \hbox (badness 1708) in paragraph at lines 1462--1463
+Underfull \hbox (badness 1708) in paragraph at lines 1197--1198
 []|\T1/ptm/m/n/12 (+20) Redirect to em-ployee dash-
  []
 
 
-ignored: Infinite glue shrinkage found in box being split [54] [55]
-Underfull \hbox (badness 10000) in paragraph at lines 1501--1502
+ignored: Infinite glue shrinkage found in box being split [53]
+ignored: Infinite glue shrinkage found in box being split [54]
+Underfull \hbox (badness 10000) in paragraph at lines 1232--1233
 []|\T1/ptm/m/n/12 (+20) Fully im-ple-mented (4
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1503--1504
+Underfull \hbox (badness 10000) in paragraph at lines 1234--1235
 []|\T1/ptm/m/n/12 (+20) Fully im-ple-mented (6
  []
 
-[56] [57] [58] [59
 
-] [60]
-Overfull \hbox (4.1211pt too wide) in paragraph at lines 1663--1665
-[]\T1/ptm/m/n/12 (-20) The three-service ar-chi-tec-ture (Re-act/Next.js, Node.js/Express, Python/FastAPI)
- []
+ignored: Infinite glue shrinkage found in box being split [55] [56] [57] [58] [59
 
-[61] [62] [63]
-Underfull \hbox (badness 10000) in paragraph at lines 1769--1773
+] [60] [61] [62] [63]
+Underfull \hbox (badness 10000) in paragraph at lines 1317--1321
 []\T1/ptm/m/n/12 (+20) World Health Or-ga-ni-za-tion, ``Burn-out an `oc-cu-pa-tional phe-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1769--1773
+Underfull \hbox (badness 10000) in paragraph at lines 1317--1321
 \T1/ptm/m/n/12 (+20) nomenon': In-ter-na-tional Clas-si-fi-ca-tion of Dis-eases,'' WHO, May
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1769--1773
+Underfull \hbox (badness 10000) in paragraph at lines 1317--1321
 \T1/ptm/m/n/12 (+20) 2019. [On-line]. Avail-able: []$\T1/cmtt/m/n/12 https : / / www . who . int / news / item /
  []
 
 
-Overfull \hbox (151.6278pt too wide) in paragraph at lines 1769--1773
+Overfull \hbox (151.6278pt too wide) in paragraph at lines 1317--1321
 \T1/cmtt/m/n/12 28-[]05-[]2019-[]burn-[]out-[]an-[]occupational-[]phenomenon-[]international-[]classification-[]of-[]diseases$[] 
  []
 
 [64]
-Underfull \hbox (badness 5681) in paragraph at lines 1840--1842
+Underfull \hbox (badness 5681) in paragraph at lines 1388--1390
 []\T1/ptm/m/n/12 (+20) V. Sub-hash, ``Em-ployee Burnout Pre-dic-tion,'' Kag-gle, 2021. [On-line].
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1840--1842
+Underfull \hbox (badness 10000) in paragraph at lines 1388--1390
 \T1/ptm/m/n/12 (+20) Avail-able: []$\T1/cmtt/m/n/12 https : / / www . kaggle . com / datasets / vijaysubhashp /
  []
 
 [65]
-Underfull \hbox (badness 4108) in paragraph at lines 1871--1873
+Underfull \hbox (badness 4108) in paragraph at lines 1419--1421
 []\T1/ptm/m/n/12 (+20) Tailwind Labs, ``Tail-wind CSS,'' 2024. [On-line]. Avail-able: []$\T1/cmtt/m/n/12 https : / /
  []
 
 [66] [67]
 
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
-(hyperref)                be the same. Added a new anchor on input line 1934.
+(hyperref)                be the same. Added a new anchor on input line 1482.
 
 
 ignored: Infinite glue shrinkage found in box being split [68] [69]
-Overfull \hbox (46.17905pt too wide) in paragraph at lines 2004--2004
+Overfull \hbox (46.17905pt too wide) in paragraph at lines 1552--1552
 []\T1/cmtt/m/n/12 Error:   { "success": false, "error": { "code": "...", "message": "..." } }[] 
  []
 
 [70]
-Overfull \hbox (9.13809pt too wide) in paragraph at lines 2022--2022
+Overfull \hbox (9.13809pt too wide) in paragraph at lines 1570--1570
 []  \T1/cmtt/m/n/12 role          ENUM('employee','admin') NOT NULL DEFAULT 'employee',[] 
  []
 
@@ -873,20 +855,20 @@ LaTeX2e <2025-11-01>
 L3 programming layer <2026-03-20>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: A912DEA6E3CB127A23BAAAB1E0957F6D;15437.
+(rerunfilecheck)             Checksum: 39BC4CE32C4AB9B7AACB20DF1ADB803E;15597.
  ) 
 Here is how much of TeX's memory you used:
- 16586 strings out of 467691
- 266411 string characters out of 5415956
- 718236 words of memory out of 5000000
- 44816 multiletter control sequences out of 15000+600000
- 678398 words of font info for 288 fonts, out of 8000000 for 9000
+ 16447 strings out of 467691
+ 265001 string characters out of 5415956
+ 718281 words of memory out of 5000000
+ 44789 multiletter control sequences out of 15000+600000
+ 675136 words of font info for 241 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,14n,79p,1054b,705s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,14n,79p,2385b,705s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\DAT\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1200.pk><C:/Users/DAT/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/DAT/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/DAT/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/DAT/AppData/Local/Programs/MiKTeX/fonts/type1/urw/symbol/usyr.pfb><C:/Users/DAT/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/DAT/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/DAT/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (90 pages, 18365848 bytes).
+Output written on main.pdf (90 pages, 18370187 bytes).
 PDF statistics:
- 1253 PDF objects out of 1440 (max. 8388607)
- 291 named destinations out of 1000 (max. 500000)
- 47889 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 1206 PDF objects out of 1440 (max. 8388607)
+ 253 named destinations out of 1000 (max. 500000)
+ 45841 words of extra memory for PDF output out of 51595 (max. 10000000)
 
